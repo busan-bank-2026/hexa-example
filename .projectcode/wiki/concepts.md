@@ -23,4 +23,3 @@
 | 시계 포트, 시간 갈아 끼우기 | due-date |
 | 알림 포트, 어댑터 하나 더 꽂기 | overdue-notice |
 | 의존 규칙을 테스트로 지키기 | dependency-check |
-| 저장 어댑터를 실제 DB로 바꿔 끼우기 | oracle-store |

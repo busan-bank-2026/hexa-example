@@ -2,13 +2,13 @@
 
 | 점검 | 결과 |
 |---|---|
-| 장 상태 | 맞음. 완료된 세 장은 tasks.md가 모두 체크됐고 done 태그가 있다 |
+| 장 상태 | 맞음. 완료된 12장 모두 tasks.md가 체크됐고 done 태그 12개가 있다 |
 | 진행 중 | 맞음. 진행 중인 장이 없다 |
-| 장 자료 | 맞음. 완료된 세 장에 captures.md, tree.md, summary-code.md가 있다 |
-| 사진 | 맞음. captures.md의 파일 14개가 모두 있다 |
-| 미룬 것 | 2개 모두 장을 정하지 않았다 |
-| 테스트 | 맞음. 10개 통과 |
+| 장 자료 | 맞음. 12장 모두 captures.md, tree.md, summary-code.md가 있고 장 끝 실행 출력이 있다 |
+| 사진 | 맞음. captures.md의 파일 53개가 모두 있다. 다시 찍지 못한 사진은 없다 |
+| 미룬 것 | 3개 모두 장을 정하지 않았다 |
+| 테스트 | 맞음. 47개 통과, 0개 실패 |
 
 ## 어긋난 것
 
-- project-setup: T1 사진이 tasks.md의 실행하면 줄(이클립스 화면)과 다르다. 콘솔로 찍을 수 없어 hexa 폴더 파일 목록으로 남겼다. captures/T1-프로젝트-파일.txt
+- project-setup: T1 사진이 tasks.md의 실행하면 줄(이클립스 화면)과 다르다. 콘솔로 찍을 수 없어 hexa 폴더의 git ls-files 목록으로 남겼다. captures/T1-프로젝트-파일.txt
