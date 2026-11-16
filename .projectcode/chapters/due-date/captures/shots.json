@@ -1,0 +1,19 @@
+{
+  "chapter": "due-date",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & (if exist data\\books.txt type data\\books.txt)",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-반납-기한.txt", "task": "T1", "commit": "af32bbd", "screen": "대출 목록 콘솔과 저장 파일",
+      "see": "B1을 대출하면 반납 기한: 14일 뒤 날짜가 나오고 목록에 대출 중 반납 기한 날짜가 붙는다. 저장 파일의 B1 줄 끝에 기한이 있다. 연체는 보이지 않는다",
+      "run": { "input": "1\nM1\nB1\n3\n0\n" } },
+    { "file": "T2-시계-갈아-끼우기.txt", "task": "T2", "commit": "05b4f32", "screen": "LoanCheck 콘솔",
+      "see": "2026-03-02 시계로 빌린 B1의 반납 기한이 2026-03-16이고 2026-03-17 시계를 끼우면 15일 뒤 B1 연체: true가 바로 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } },
+    { "file": "done-반납-기한.txt", "task": "done", "commit": "05b4f32", "screen": "대출 목록 콘솔과 저장 파일",
+      "see": "spec 실행 예시처럼 대출 결과 아래에 반납 기한이 나오고 목록의 B1에 반납 기한이 붙는다. 저장 파일 B1 줄 끝에 기한, 다른 줄은 빈 칸 둘이다",
+      "run": { "input": "1\nM1\nB1\n3\n0\n" } },
+    { "file": "done-두-번째-입구.txt", "task": "done", "commit": "05b4f32", "screen": "LoanCheck 콘솔",
+      "see": "spec 두 번째 입구 예시처럼 대출, 반납 기한, 15일 뒤 연체, 반납 네 줄이 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } }
+  ]
+}

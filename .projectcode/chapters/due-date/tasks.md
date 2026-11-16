@@ -13,6 +13,6 @@
   - 실행하면: Main은 T1과 같다. 두 번째 입구를 돌리면 2026-03-02에 빌린 B1이 15일 뒤 연체로 바로 나온다
   - Why: 오늘 날짜도 프로그램 밖에서 오는 값이라 포트로 묻으면 시계를 갈아 끼워 어느 날이든 바로 실행해 볼 수 있다
   - 다른 장: layered-loan, use-case-port, store-port, hexagon-packages, file-store, book-list, borrow-command, loan-errors, project-setup
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식
