@@ -1,7 +1,6 @@
 package hexa;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
@@ -64,11 +63,12 @@ class LayeredLoanTest {
     }
 
     @Test
-    @DisplayName("S3 대출 중인 책을 다시 대출하면 거절한다. 오류로 프로그램이 멈춘다")
+    @DisplayName("S3 대출 중인 책을 다시 대출하면 거절한다")
     void s3() {
-        IllegalStateException e = assertThrows(IllegalStateException.class,
-                () -> run("1\nM1\nB1\n1\nM2\nB1\n0\n"));
-        assertEquals("이미 대출 중인 책입니다", e.getMessage());
+        String out = run("1\nM1\nB1\n1\nM2\nB1\n0\n");
+        assertTrue(out.contains("이미 대출 중인 책입니다"));
+        assertEquals(1, count(out, "객체지향의 사실과 오해 대출했습니다"));
+        assertTrue(out.contains("프로그램을 끝냅니다"));
     }
 
     @Test

@@ -126,8 +126,9 @@ class FileStoreTest {
         String first = runMain("1\nM1\nB1\n0\n");
         assertTrue(first.contains("객체지향의 사실과 오해 대출했습니다"));
 
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> runMain("1\nM2\nB1\n0\n"));
-        assertEquals("이미 대출 중인 책입니다", e.getMessage());
+        String second = runMain("1\nM2\nB1\n0\n");
+        assertTrue(second.contains("이미 대출 중인 책입니다"));
+        assertFalse(second.contains("대출했습니다"));
 
         String third = runMain("2\nB1\n1\nM2\nB1\n0\n");
         assertTrue(third.contains("객체지향의 사실과 오해 반납했습니다"));

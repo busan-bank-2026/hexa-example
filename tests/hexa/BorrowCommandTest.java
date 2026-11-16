@@ -100,15 +100,15 @@ class BorrowCommandTest {
     }
 
     @Test
-    @DisplayName("S3 콘솔 메뉴에서 회원 번호를 비우거나 빈칸만 넣고 대출하면 오류로 멈춘다. 대출했습니다가 나오지 않고 저장 파일에 대출이 남지 않는다")
+    @DisplayName("S3 콘솔 메뉴에서 회원 번호를 비우거나 빈칸만 넣고 대출하면 거절한다. 대출했습니다가 나오지 않고 저장 파일에 대출이 남지 않는다")
     void s3() throws Exception {
-        ByteArrayOutputStream empty = new ByteArrayOutputStream();
-        assertThrows(IllegalArgumentException.class, () -> runMain("1\n\nB1\n0\n", empty));
-        assertFalse(empty.toString(StandardCharsets.UTF_8).contains("대출했습니다"));
+        String empty = runMain("1\n\nB1\n0\n", new ByteArrayOutputStream());
+        assertTrue(empty.contains("회원 번호가 비었습니다"), empty);
+        assertFalse(empty.contains("대출했습니다"), empty);
 
-        ByteArrayOutputStream space = new ByteArrayOutputStream();
-        assertThrows(IllegalArgumentException.class, () -> runMain("1\n \nB2\n0\n", space));
-        assertFalse(space.toString(StandardCharsets.UTF_8).contains("대출했습니다"));
+        String space = runMain("1\n \nB2\n0\n", new ByteArrayOutputStream());
+        assertTrue(space.contains("회원 번호가 비었습니다"), space);
+        assertFalse(space.contains("대출했습니다"), space);
 
         assertTrue(Files.readAllLines(FILE).contains("B2,클린 아키텍처,"));
         String after = runMain("3\n0\n", new ByteArrayOutputStream());

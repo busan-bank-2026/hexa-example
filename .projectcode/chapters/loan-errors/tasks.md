@@ -1,6 +1,6 @@
 # loan-errors 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 콘솔 메뉴가 예외를 메시지로 바꾸기
   - 근거: S1, S3, S5
   - 파일: hexa/src/hexa/adapter/in/ConsoleMenu.java
