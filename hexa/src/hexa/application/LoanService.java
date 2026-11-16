@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hexa.application.port.in.BookView;
+import hexa.application.port.in.BorrowCommand;
 import hexa.application.port.in.LoanUseCase;
 import hexa.application.port.out.BookPort;
 import hexa.domain.Book;
@@ -16,9 +17,9 @@ public class LoanService implements LoanUseCase {
     }
 
     @Override
-    public BookView borrow(String memberId, String bookId) {
-        Book book = bookPort.findById(bookId);
-        book.borrow(memberId);
+    public BookView borrow(BorrowCommand command) {
+        Book book = bookPort.findById(command.bookId());
+        book.borrow(command.memberId());
         bookPort.save(book);
         return toView(book);
     }

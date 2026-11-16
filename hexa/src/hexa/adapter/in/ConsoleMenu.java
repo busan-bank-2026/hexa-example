@@ -3,6 +3,7 @@ package hexa.adapter.in;
 import java.util.Scanner;
 
 import hexa.application.port.in.BookView;
+import hexa.application.port.in.BorrowCommand;
 import hexa.application.port.in.LoanUseCase;
 
 public class ConsoleMenu {
@@ -24,7 +25,7 @@ public class ConsoleMenu {
                 String memberId = scanner.nextLine();
                 System.out.print("책 번호: ");
                 String bookId = scanner.nextLine();
-                BookView book = loanUseCase.borrow(memberId, bookId);
+                BookView book = loanUseCase.borrow(new BorrowCommand(memberId, bookId));
                 System.out.println(book.title() + " 대출했습니다");
             } else if (choice.equals("2")) {
                 System.out.print("책 번호: ");

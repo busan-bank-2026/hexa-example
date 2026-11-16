@@ -1,7 +1,7 @@
 # borrow-command 작업
 
 - [x] 테스트 작성
-- [ ] T1 대출 요청을 입력 모델로 받기
+- [x] T1 대출 요청을 입력 모델로 받기
   - 근거: S1
   - 파일: hexa/src/hexa/application/port/in/BorrowCommand.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 바른 값으로 대출하면 결과 글은 그대로다. 회원 번호를 비워도 아직 대출했습니다가 나온다

@@ -3,7 +3,7 @@ package hexa.application.port.in;
 import java.util.List;
 
 public interface LoanUseCase {
-    BookView borrow(String memberId, String bookId);
+    BookView borrow(BorrowCommand command);
 
     BookView returnBook(String bookId);
 
