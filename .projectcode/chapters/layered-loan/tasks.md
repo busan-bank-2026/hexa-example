@@ -1,0 +1,29 @@
+# layered-loan 작업
+
+- [ ] 테스트 작성
+- [ ] T1 메뉴 보여주기
+  - 근거: S1, S5
+  - 파일: hexa/src/hexa/Main.java
+  - 실행하면: 메뉴가 나오고, 없는 번호를 넣으면 메뉴가 다시 나오고, 0을 넣으면 프로그램을 끝냅니다가 나온다
+  - Why: 메뉴가 있어야 대출과 반납을 고를 수 있다
+  - 다른 장: project-setup
+- [ ] T2 책 대출하기
+  - 근거: S2
+  - 파일: hexa/src/hexa/Book.java, hexa/src/hexa/BookRepository.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/Main.java
+  - 실행하면: 1, M1, B1을 넣으면 객체지향의 사실과 오해 대출했습니다가 나온다
+  - Why: 책, 저장, 서비스 계층으로 대출을 처음 만든다
+  - 다른 장: project-setup
+- [ ] T3 대출 중인 책 거절하기
+  - 근거: S3
+  - 파일: hexa/src/hexa/Book.java
+  - 실행하면: B1을 두 번 대출하면 이미 대출 중인 책입니다 오류로 프로그램이 멈춘다
+  - Why: 대출 규칙은 책이 지킨다. 멈추는 문제는 loan-errors 장에서 고친다
+- [ ] T4 책 반납하기
+  - 근거: S4
+  - 파일: hexa/src/hexa/Book.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/Main.java
+  - 실행하면: B1을 대출하고 2, B1을 넣으면 객체지향의 사실과 오해 반납했습니다가 나오고 다시 대출할 수 있다
+  - Why: 반납해야 책을 다시 빌려줄 수 있다
+  - 다른 장: project-setup
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
