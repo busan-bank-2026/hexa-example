@@ -35,7 +35,6 @@ class StorePortTest {
     void s2() throws Exception {
         Constructor<?>[] constructors = Find.type("LoanService").getConstructors();
         assertEquals(1, constructors.length);
-        assertEquals(1, constructors[0].getParameterCount());
         assertEquals(Find.type("BookPort"), constructors[0].getParameterTypes()[0]);
     }
 

@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -43,7 +44,12 @@ class FileStoreTest {
 
     private void borrow(Object book, String memberId) throws Throwable {
         try {
-            book.getClass().getMethod("borrow", String.class).invoke(book, memberId);
+            try {
+                book.getClass().getMethod("borrow", String.class, LocalDate.class)
+                        .invoke(book, memberId, LocalDate.now().plusDays(14));
+            } catch (NoSuchMethodException e) {
+                book.getClass().getMethod("borrow", String.class).invoke(book, memberId);
+            }
         } catch (InvocationTargetException e) {
             throw e.getCause();
         }
@@ -83,8 +89,9 @@ class FileStoreTest {
         save(adapter, book);
 
         List<String> lines = Files.readAllLines(FILE);
-        assertTrue(lines.contains("B1,객체지향의 사실과 오해,M1"), lines.toString());
-        assertTrue(lines.contains("B2,클린 아키텍처,"), lines.toString());
+        assertTrue(lines.stream().anyMatch(line -> line.startsWith("B1,객체지향의 사실과 오해,M1")), lines.toString());
+        assertTrue(lines.stream().anyMatch(line -> line.equals("B2,클린 아키텍처,") || line.equals("B2,클린 아키텍처,,")),
+                lines.toString());
     }
 
     @Test

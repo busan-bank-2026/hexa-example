@@ -110,7 +110,8 @@ class BorrowCommandTest {
         assertTrue(space.contains("회원 번호가 비었습니다"), space);
         assertFalse(space.contains("대출했습니다"), space);
 
-        assertTrue(Files.readAllLines(FILE).contains("B2,클린 아키텍처,"));
+        assertTrue(Files.readAllLines(FILE).stream()
+                .anyMatch(line -> line.equals("B2,클린 아키텍처,") || line.equals("B2,클린 아키텍처,,")));
         String after = runMain("3\n0\n", new ByteArrayOutputStream());
         assertTrue(after.contains("B1 객체지향의 사실과 오해 대출 가능"), after);
         assertTrue(after.contains("B2 클린 아키텍처 대출 가능"), after);

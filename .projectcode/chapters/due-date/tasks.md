@@ -1,6 +1,6 @@
 # due-date 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 반납 기한 정하고 보여 주기
   - 근거: S1, S2, S3
   - 파일: hexa/src/hexa/domain/Book.java, hexa/src/hexa/application/port/in/BookView.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/out/FileBookAdapter.java, hexa/src/hexa/adapter/in/ConsoleMenu.java

@@ -40,6 +40,13 @@ class Find {
 
     static Object newLoanService() throws Exception {
         Class<?> service = type("LoanService");
+        if (exists("ClockPort")) {
+            try {
+                Object clock = type("SystemClockAdapter").getConstructor().newInstance();
+                return service.getConstructor(type("BookPort"), type("ClockPort")).newInstance(newBookStore(), clock);
+            } catch (NoSuchMethodException e) {
+            }
+        }
         if (exists("BookPort")) {
             try {
                 return service.getConstructor(type("BookPort")).newInstance(newBookStore());
