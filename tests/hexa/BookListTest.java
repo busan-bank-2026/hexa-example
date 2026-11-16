@@ -63,7 +63,7 @@ class BookListTest {
     @DisplayName("S1 메뉴에 3 목록을 더한다. 고르면 책마다 책 번호, 제목, 대출 상태를 한 줄씩 찍는다. 대출 상태는 대출 가능 또는 대출 중이다")
     void s1() {
         String first = runMain("3\n0\n");
-        assertTrue(first.contains("1 대출  2 반납  3 목록  0 종료"), first);
+        assertTrue(first.contains("1 대출  2 반납  3 목록  4 연체 알림  0 종료"), first);
         assertTrue(first.contains("B1 객체지향의 사실과 오해 대출 가능"), first);
         assertTrue(first.contains("B2 클린 아키텍처 대출 가능"), first);
         assertTrue(first.contains("B3 도메인 주도 설계 첫걸음 대출 가능"), first);

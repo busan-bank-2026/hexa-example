@@ -70,8 +70,12 @@ class DueDateTest {
     }
 
     private Object service(Object store, Object clock) throws Exception {
-        return Find.type("LoanService").getConstructor(Find.type("BookPort"), Find.type("ClockPort"))
-                .newInstance(store, clock);
+        Class<?> service = Find.type("LoanService");
+        if (Find.exists("NotifyPort")) {
+            return service.getConstructor(Find.type("BookPort"), Find.type("ClockPort"), Find.type("NotifyPort"))
+                    .newInstance(store, clock, Find.silentNotices());
+        }
+        return service.getConstructor(Find.type("BookPort"), Find.type("ClockPort")).newInstance(store, clock);
     }
 
     private Object firstBook(Object service) throws Exception {

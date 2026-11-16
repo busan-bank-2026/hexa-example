@@ -1,6 +1,6 @@
 # overdue-notice 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 알림 포트로 연체 알림 보내기
   - 근거: S1, S2, S3, S4
   - 파일: hexa/src/hexa/application/port/out/NotifyPort.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/out/ConsoleNotifyAdapter.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java

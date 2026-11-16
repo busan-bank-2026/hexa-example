@@ -1,6 +1,7 @@
 package hexa;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.List;
 
 class Find {
@@ -38,8 +39,21 @@ class Find {
         return type(name).getConstructor().newInstance();
     }
 
+    static Object silentNotices() throws Exception {
+        Class<?> port = type("NotifyPort");
+        return Proxy.newProxyInstance(port.getClassLoader(), new Class<?>[] {port}, (proxy, method, args) -> null);
+    }
+
     static Object newLoanService() throws Exception {
         Class<?> service = type("LoanService");
+        if (exists("NotifyPort")) {
+            try {
+                Object clock = type("SystemClockAdapter").getConstructor().newInstance();
+                return service.getConstructor(type("BookPort"), type("ClockPort"), type("NotifyPort"))
+                        .newInstance(newBookStore(), clock, silentNotices());
+            } catch (NoSuchMethodException e) {
+            }
+        }
         if (exists("ClockPort")) {
             try {
                 Object clock = type("SystemClockAdapter").getConstructor().newInstance();
