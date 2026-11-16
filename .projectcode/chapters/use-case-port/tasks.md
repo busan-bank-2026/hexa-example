@@ -13,7 +13,7 @@
   - 실행하면: 메뉴 동작은 그대로다. 서비스 코드에 Scanner와 System.out이 없다
   - Why: 서비스가 값을 받아 책을 돌려줘야 콘솔 없이도 부를 수 있다
   - 다른 장: project-setup, layered-loan
-- [ ] T3 유스케이스 포트 열기
+- [x] T3 유스케이스 포트 열기
   - 근거: S1
   - 파일: hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
   - 실행하면: 메뉴 동작은 그대로다. 메뉴는 LoanService 대신 LoanUseCase만 안다

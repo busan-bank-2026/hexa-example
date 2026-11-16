@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class ConsoleMenu {
     private final Scanner scanner = new Scanner(System.in);
-    private final LoanService loanService;
+    private final LoanUseCase loanUseCase;
 
-    public ConsoleMenu(LoanService loanService) {
-        this.loanService = loanService;
+    public ConsoleMenu(LoanUseCase loanUseCase) {
+        this.loanUseCase = loanUseCase;
     }
 
     public void run() {
@@ -21,12 +21,12 @@ public class ConsoleMenu {
                 String memberId = scanner.nextLine();
                 System.out.print("책 번호: ");
                 String bookId = scanner.nextLine();
-                Book book = loanService.borrow(memberId, bookId);
+                Book book = loanUseCase.borrow(memberId, bookId);
                 System.out.println(book.getTitle() + " 대출했습니다");
             } else if (choice.equals("2")) {
                 System.out.print("책 번호: ");
                 String bookId = scanner.nextLine();
-                Book book = loanService.returnBook(bookId);
+                Book book = loanUseCase.returnBook(bookId);
                 System.out.println(book.getTitle() + " 반납했습니다");
             } else if (choice.equals("0")) {
                 System.out.println("프로그램을 끝냅니다");
