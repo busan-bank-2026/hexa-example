@@ -7,7 +7,7 @@
   - 실행하면: Run As, JUnit Test로 도메인 규칙 테스트가 초록불이다. Book에 어댑터 import를 넣으면 빨간불에 그 줄이 보인다
   - Why: 의존 방향을 눈으로 지키면 놓치므로 테스트가 소스의 import를 읽어 대신 지킨다
   - 다른 장: project-setup
-- [ ] T2 application과 어댑터 규칙 더하기
+- [x] T2 application과 어댑터 규칙 더하기
   - 근거: S3, S4
   - 파일: hexa/test/hexa/DependencyRuleTest.java
   - 실행하면: 규칙 테스트 세 개가 초록불이다. LoanService에 어댑터 import를 넣으면 application 규칙이 빨간불이다

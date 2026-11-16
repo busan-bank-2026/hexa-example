@@ -21,6 +21,23 @@ class DependencyRuleTest {
         }
     }
 
+    @Test
+    void applicationDoesNotKnowAdapter() throws IOException {
+        for (String line : importsIn("src/hexa/application")) {
+            assertFalse(line.startsWith("import hexa.adapter."), line);
+        }
+    }
+
+    @Test
+    void adaptersDoNotKnowEachOther() throws IOException {
+        for (String line : importsIn("src/hexa/adapter/in")) {
+            assertFalse(line.startsWith("import hexa.adapter.out."), line);
+        }
+        for (String line : importsIn("src/hexa/adapter/out")) {
+            assertFalse(line.startsWith("import hexa.adapter.in."), line);
+        }
+    }
+
     private List<String> importsIn(String folder) throws IOException {
         List<String> imports = new ArrayList<>();
         try (Stream<Path> files = Files.walk(Path.of(folder))) {
