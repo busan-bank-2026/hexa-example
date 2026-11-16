@@ -1,0 +1,19 @@
+{
+  "chapter": "overdue-notice",
+  "command": "powershell -NoProfile -Command \"New-Item -ItemType Directory -Force data | Out-Null; [IO.File]::WriteAllLines('data/books.txt', [string[]]@('B1,객체지향의 사실과 오해,M1,2020-01-01','B2,클린 아키텍처,,','B3,도메인 주도 설계 첫걸음,,'))\" && javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & (if exist data\\notices.txt type data\\notices.txt)",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-콘솔-알림.txt", "task": "T1", "commit": "7ec3140", "screen": "연체 알림 콘솔과 LoanCheck 콘솔",
+      "see": "B1 기한이 지난 저장 파일로 4를 고르면 M1에게 알림: 줄과 연체 알림 1건을 보냈습니다가 콘솔에 나온다. 이어 LoanCheck가 M1에게 알림: 줄과 연체 알림: 1건을 바로 보여 준다",
+      "run": { "command": "powershell -NoProfile -Command \"New-Item -ItemType Directory -Force data | Out-Null; [IO.File]::WriteAllLines('data/books.txt', [string[]]@('B1,객체지향의 사실과 오해,M1,2020-01-01','B2,클린 아키텍처,,','B3,도메인 주도 설계 첫걸음,,'))\" && javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "4\n3\n0\n" } },
+    { "file": "T2-파일-알림.txt", "task": "T2", "commit": "8c7c984", "screen": "연체 알림 콘솔, 알림 파일, LoanCheck 콘솔",
+      "see": "4를 두 번 고르면 콘솔에는 연체 알림 1건을 보냈습니다만 나오고 알림 파일에 M1 알림 줄이 두 번 쌓인다. LoanCheck는 콘솔에 M1에게 알림: 줄을 그대로 보여 준다",
+      "run": { "command": "powershell -NoProfile -Command \"New-Item -ItemType Directory -Force data | Out-Null; [IO.File]::WriteAllLines('data/books.txt', [string[]]@('B1,객체지향의 사실과 오해,M1,2020-01-01','B2,클린 아키텍처,,','B3,도메인 주도 설계 첫걸음,,'))\" && javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & (if exist data\\notices.txt type data\\notices.txt) & javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "4\n4\n0\n" } },
+    { "file": "done-연체-알림.txt", "task": "done", "commit": "8c7c984", "screen": "연체 알림 콘솔과 알림 파일",
+      "see": "spec 실행 예시처럼 4를 고르면 연체 알림 1건을 보냈습니다가 나오고 알림 파일에 M1,객체지향의 사실과 오해 반납 기한 2020-01-01이 지났습니다 한 줄이 있다",
+      "run": { "input": "4\n0\n" } },
+    { "file": "done-두-번째-입구.txt", "task": "done", "commit": "8c7c984", "screen": "LoanCheck 콘솔",
+      "see": "spec 두 번째 입구 예시처럼 대출, 반납 기한, 15일 뒤 연체, M1에게 알림, 연체 알림 1건, 반납 여섯 줄이 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } }
+  ]
+}

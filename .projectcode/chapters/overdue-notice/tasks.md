@@ -17,6 +17,6 @@
   - 실행하면: Main의 연체 알림이 콘솔 대신 data/notices.txt에 한 줄씩 쌓인다. 두 번째 입구는 T1처럼 콘솔에 알린다
   - Why: 같은 포트에 어댑터를 하나 더 꽂으면 서비스를 고치지 않고 Main 한 줄로 알림이 가는 곳을 바꾼다
   - 다른 장: project-setup, layered-loan, use-case-port, store-port, hexagon-packages, file-store, due-date
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식

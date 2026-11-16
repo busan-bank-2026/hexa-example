@@ -1,0 +1,7 @@
+$ javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck
+B1을 M1에게 대출: 객체지향의 사실과 오해
+반납 기한: 2026-03-16
+15일 뒤 B1 연체: true
+M1에게 알림: 객체지향의 사실과 오해 반납 기한 2026-03-16이 지났습니다
+연체 알림: 1건
+B1 반납: 객체지향의 사실과 오해

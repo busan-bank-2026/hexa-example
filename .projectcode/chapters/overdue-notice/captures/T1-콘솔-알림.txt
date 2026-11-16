@@ -1,0 +1,22 @@
+$ powershell -NoProfile -Command "New-Item -ItemType Directory -Force data | Out-Null; [IO.File]::WriteAllLines('data/books.txt', [string[]]@('B1,객체지향의 사실과 오해,M1,2020-01-01','B2,클린 아키텍처,,','B3,도메인 주도 설계 첫걸음,,'))" && javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck
+(입력)
+4
+3
+0
+(출력)
+도서 대출 프로그램을 시작합니다
+1 대출  2 반납  3 목록  4 연체 알림  0 종료
+> M1에게 알림: 객체지향의 사실과 오해 반납 기한 2020-01-01이 지났습니다
+연체 알림 1건을 보냈습니다
+1 대출  2 반납  3 목록  4 연체 알림  0 종료
+> B1 객체지향의 사실과 오해 대출 중 반납 기한 2020-01-01 연체
+B2 클린 아키텍처 대출 가능
+B3 도메인 주도 설계 첫걸음 대출 가능
+1 대출  2 반납  3 목록  4 연체 알림  0 종료
+> 프로그램을 끝냅니다
+B1을 M1에게 대출: 객체지향의 사실과 오해
+반납 기한: 2026-03-16
+15일 뒤 B1 연체: true
+M1에게 알림: 객체지향의 사실과 오해 반납 기한 2026-03-16이 지났습니다
+연체 알림: 1건
+B1 반납: 객체지향의 사실과 오해
