@@ -1,12 +1,12 @@
 // projectcode 따라치기 엔진
 // 사용: node codealong.mjs [--branch lecture] [--out .projectcode/code] [--student 폴더]
 // 학생 코드 폴더는 --student가 없으면 contract.md 폴더 표의 학생 코드 줄이다.
-// lecture 브랜치의 커밋을 차례로 읽어 따라치기와 합류 지점마다 완성 문서를 쓴다.
-// 문서마다 MD와 HTML 두 가지를 같은 내용으로 쓴다. HTML은 브라우저로 열고 복사 버튼을 쓴다.
+// lecture 브랜치의 커밋을 차례로 읽어 따라치기를 쓴다.
+// MD와 HTML 두 가지를 같은 내용으로 쓴다. HTML은 브라우저로 열고 복사 버튼을 쓴다.
 // 커밋 하나가 따라치기 한 단계다. 첫 커밋은 시작 키트를 복사한 상태라 따라치기에 넣지 않는다.
 
 import { execFileSync } from "node:child_process"
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs"
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { contract, studentFolder } from "./contract.mjs"
 
@@ -21,7 +21,7 @@ const student = studentFolder(arg("--student"))
 const git = (args) =>
   execFileSync("git", ["-c", "core.quotepath=false", ...args], { encoding: "utf8", maxBuffer: 1 << 28 })
 
-// roadmap에서 강의 이름, 장 순서, 합류 지점, 따라치기 시작 장, 바꾼 단계 제목을 읽는다
+// roadmap에서 강의 이름, 장 순서, 바꾼 단계 제목을 읽는다
 const roadmap = readFileSync(".projectcode/roadmap.md", "utf8")
 const section = (title) => (roadmap.split(new RegExp(`^## ${title}\\s*$`, "m"))[1] || "").split(/^## /m)[0]
 const lectureTitle = (roadmap.match(/^강의: (.+)$/m) || [])[1] || "따라치기"
@@ -29,20 +29,6 @@ const chapters = {}
 for (const line of roadmap.split("\n")) {
   const m = line.match(/^\| (\d+) \| ([a-z0-9-]+) \| ([^|]+) \|/)
   if (m) chapters[m[2]] = { no: m[1], name: m[3].trim() }
-}
-// - component-split: 그림완성, 통째로 screens
-// 통째로 장이 없으면 합류 장 끝까지 통째로 준다. 있으면 그 장까지 통째로, 뒤는 단계 diff다
-// - 따라치기: 처음부터 또는 - 따라치기: board-list부터
-const joins = {}
-let followFrom = null
-for (const line of section("합류 지점").split("\n")) {
-  const f = line.match(/^- 따라치기: (.+)$/)
-  if (f) {
-    followFrom = f[1].trim() === "처음부터" ? null : f[1].trim().replace(/부터$/, "")
-    continue
-  }
-  const m = line.match(/^- ([a-z0-9-]+): ([^,]+?)(?:, 통째로 ([a-z0-9-]+))?\s*$/)
-  if (m) joins[m[1]] = { name: m[2].trim(), whole: m[3] || m[1] }
 }
 // - join T1: 입력값을 객체로 기억하기
 const titles = {}
@@ -449,86 +435,25 @@ function write(name, title, blocks) {
   writeFileSync(join(out, `${name}.html`), toHtml(title, blocks))
 }
 
-// 시작 키트가 비었으면 처음 단계부터 모든 파일을 문서로 준다
-const kitEmpty = !git(["ls-tree", "-r", "--name-only", hashes[0], "--", student]).trim()
-
-rmSync(out, { recursive: true, force: true })
+// 폴더째 지우지 않고 안만 비운다. 탐색기나 IDE가 폴더를 열고 있으면 폴더 지우기가 막힌다
 mkdirSync(out, { recursive: true })
+for (const name of readdirSync(out)) rmSync(join(out, name), { recursive: true, force: true })
 
 // 따라치기
 const followTitle = `${lectureTitle} 따라치기`
 const follow = [{ t: "h1", text: followTitle }, ...prepBlocks()]
-const startIndex = followFrom ? steps.findIndex((s) => s.chapter === followFrom) : 1
-if (startIndex < 0) throw new Error(`따라치기 시작 장 ${followFrom}이 ${branch}에 없습니다.`)
-if (followFrom) {
-  const before = Object.entries(joins).find(([chapter]) => steps[startIndex - 1].chapter === chapter)
-  const firstNo = (chapters[steps[1].chapter] || { no: "1" }).no
-  const lastNo = (chapters[steps[startIndex - 1].chapter] || { no: "" }).no
-  if (before) follow.push({ t: "p", text: `${firstNo}~${lastNo}장은 ${before[1].name}.md로 한다.` })
-}
 let current = null
 let stepNo = 0
-let lastJoined = null
 for (let i = 1; i < steps.length; i++) {
   const step = steps[i]
   if (step.chapter !== current) {
     current = step.chapter
     stepNo = 0
-    if (i >= startIndex) {
-      follow.push(chapterTitle(current))
-      if (lastJoined) follow.push({ t: "p", text: `${joins[lastJoined].name}.md로 합류했다면 여기부터 친다.` })
-    }
-    lastJoined = null
+    follow.push(chapterTitle(current))
   }
   stepNo++
-  if (i >= startIndex) follow.push(...stepBlocks(i, stepNo))
-  const next = steps[i + 1]
-  if (joins[step.chapter] && (!next || next.chapter !== step.chapter) && !followFrom) lastJoined = step.chapter
+  follow.push(...stepBlocks(i, stepNo))
 }
 write("따라치기", followTitle, follow)
 
-// 합류 지점마다 완성 문서
-// 통째로 장 끝까지 바뀐 파일을 통째로 주고, 그 뒤 합류 장까지는 단계 diff로 준다
-for (const [chapter, { name: fileName, whole }] of Object.entries(joins)) {
-  const chapterOrder = steps.map((s) => s.chapter)
-  const lastIndex = chapterOrder.lastIndexOf(chapter)
-  const wholeIndex = chapterOrder.lastIndexOf(whole)
-  if (lastIndex < 0 || wholeIndex < 0 || wholeIndex > lastIndex) {
-    console.error(`합류 지점 ${chapter}(통째로 ${whole})가 ${branch}에 없거나 순서가 맞지 않습니다.`)
-    continue
-  }
-  const h = steps[wholeIndex].h
-  const list = changes(hashes[0], h)
-  const ch = chapters[chapter] || { no: "", name: "" }
-  const wholeCh = chapters[whole] || { no: "", name: "" }
-  const doc = [
-    { t: "h1", text: fileName },
-    { t: "p", text: `${ch.no} ${chapter} ${ch.name}까지 끝낸 코드다.` },
-    { t: "p", text: kitEmpty ? `빈 ${student} 폴더를 만든 뒤 아래 순서대로 한다.` : `시작 키트를 ${student} 폴더로 복사한 뒤 아래 순서대로 한다.` },
-    ...prepBlocks(),
-    { t: "h2", text: `${wholeCh.no}장까지 통째로`, id: "whole" },
-    { t: "p", text: `${wholeCh.no} ${whole}까지 끝낸 파일이다.` },
-  ]
-  const deleted = list.filter((c) => c.status === "D")
-  if (deleted.length) doc.push({ t: "delete", items: deleted.map((c) => c.rel) })
-  for (const c of list.filter((c) => c.status !== "D")) doc.push(fileBlock(c.status === "A" ? "new" : "overwrite", h, c))
-  let diffChapter = null
-  let diffStepNo = 0
-  for (let i = wholeIndex + 1; i <= lastIndex; i++) {
-    if (steps[i].chapter !== diffChapter) {
-      diffChapter = steps[i].chapter
-      diffStepNo = 0
-      doc.push(chapterTitle(diffChapter))
-    }
-    doc.push(...stepBlocks(i, ++diffStepNo))
-  }
-  const nextStep = steps[lastIndex + 1]
-  if (nextStep) {
-    const next = chapters[nextStep.chapter] || { no: "" }
-    doc.push({ t: "p", text: `다음은 따라치기의 ${next.no} ${nextStep.chapter}부터 이어 친다.` })
-  }
-  write(fileName, fileName, doc)
-}
-
-const names = ["따라치기", ...Object.values(joins).map((j) => j.name)]
-console.log(`썼음: ${names.map((n) => `${out}/${n}.md, ${n}.html`).join(", ")}`)
+console.log(`썼음: ${out}/따라치기.md, 따라치기.html`)
