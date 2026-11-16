@@ -1,7 +1,7 @@
 # use-case-port 작업
 
 - [x] 테스트 작성
-- [ ] T1 메뉴를 어댑터로 옮기기
+- [x] T1 메뉴를 어댑터로 옮기기
   - 근거: S3
   - 파일: hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
   - 실행하면: 메뉴, 대출, 반납이 layered-loan과 똑같이 동작한다
