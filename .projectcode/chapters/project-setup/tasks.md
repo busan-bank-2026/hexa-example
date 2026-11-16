@@ -6,7 +6,7 @@
   - 파일: hexa/.project, hexa/.classpath, hexa/.settings/org.eclipse.jdt.core.prefs, hexa/.settings/org.eclipse.core.resources.prefs, hexa/src/.gitkeep, .gitignore
   - 실행하면: 이클립스에서 hexa 프로젝트가 열리고 빈 src 폴더가 보인다
   - Why: 프로젝트가 열려야 Main을 만들고 실행할 수 있다
-- [ ] T2 시작 글 보여주기
+- [x] T2 시작 글 보여주기
   - 근거: S1
   - 파일: hexa/src/hexa/Main.java
   - 실행하면: Main을 Run하면 콘솔에 도서 대출 프로그램을 시작합니다가 나온다
