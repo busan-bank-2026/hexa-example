@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>헥사고날 따라치기</title>
+<style>
+  :root { --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0; --accent: #0969da; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: #3d444d; --accent: #4493f8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif; line-height: 1.6; }
+  main { max-width: 640px; margin: 0 auto; padding: 48px 16px; }
+  h1 { font-size: 1.6rem; margin: 0 0 8px; }
+  p { margin: 0 0 24px; color: var(--muted); }
+  a.card { display: block; padding: 16px 20px; margin-bottom: 12px; border: 1px solid var(--line);
+    border-radius: 8px; color: var(--fg); text-decoration: none; }
+  a.card:hover { border-color: var(--accent); }
+  a.card strong { display: block; color: var(--accent); font-size: 1.1rem; }
+  a.card span { color: var(--muted); font-size: 0.95rem; }
+  footer { margin-top: 32px; font-size: 0.85rem; color: var(--muted); }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>도서 대출로 배우는 헥사고날 아키텍처</h1>
+  <p>순수 자바 콘솔 프로그램을 이클립스에서 한 단계씩 따라 쳐요.</p>
+  <a class="card" href="따라치기.html">
+    <strong>따라치기</strong>
+    <span>1장 프로젝트 뼈대부터 12장 의존 방향 검사까지 모든 단계를 직접 쳐요</span>
+  </a>
+  <a class="card" href="계층형완성.html">
+    <strong>계층형완성</strong>
+    <span>1, 2장 코드를 파일째 복사하고 따라치기의 3장 use-case-port부터 이어서 쳐요</span>
+  </a>
+  <footer>소스 코드: <a href="https://github.com/busan-bank-2026/hexa-example">busan-bank-2026/hexa-example</a></footer>
+</main>
+</body>
+</html>
