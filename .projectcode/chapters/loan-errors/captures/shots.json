@@ -1,0 +1,22 @@
+{
+  "chapter": "loan-errors",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & (if exist data\\books.txt type data\\books.txt)",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-예외를-메시지로.txt", "task": "T1", "commit": "fe9e9d2", "screen": "대출 콘솔과 저장 파일",
+      "see": "M2가 대출 중인 B1을 빌리면 이미 대출 중인 책입니다가 나오고 메뉴로 돌아간다. 없는 책 B9는 아직 NullPointerException으로 멈춘다. 저장 파일의 B1은 M1이다",
+      "run": { "input": "1\nM1\nB1\n1\nM2\nB1\n1\nM2\nB9\n0\n" } },
+    { "file": "T2-없는-책-번호.txt", "task": "T2", "commit": "c92dff8", "screen": "대출 반납 콘솔",
+      "see": "B9를 빌리거나 반납하면 책을 찾을 수 없습니다가 두 번 나오고 메뉴로 돌아가 프로그램을 끝냅니다까지 간다",
+      "run": { "input": "1\nM1\nB9\n2\nB9\n0\n" } },
+    { "file": "T3-반납-거절.txt", "task": "T3", "commit": "86cded1", "screen": "반납 콘솔",
+      "see": "빌리지 않은 B2를 반납하면 반납했습니다 대신 대출 중이 아닌 책입니다가 나오고 메뉴로 돌아간다",
+      "run": { "input": "2\nB2\n0\n" } },
+    { "file": "done-대출-실패-알리기.txt", "task": "done", "commit": "86cded1", "screen": "대출 반납 콘솔과 저장 파일",
+      "see": "spec 실행 예시처럼 대출 중, 없는 책, 대출 중이 아님 세 실패가 메시지 한 줄씩으로 나오고 프로그램을 끝냅니다까지 간다. 저장 파일의 B1은 M1이다",
+      "run": { "input": "1\nM1\nB1\n1\nM2\nB1\n1\nM2\nB9\n2\nB2\n0\n" } },
+    { "file": "done-두-번째-입구.txt", "task": "done", "commit": "86cded1", "screen": "LoanCheck 콘솔",
+      "see": "borrow-command 장 끝 사진과 같게 대출과 반납 두 줄이 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } }
+  ]
+}

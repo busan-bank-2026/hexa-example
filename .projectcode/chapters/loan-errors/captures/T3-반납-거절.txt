@@ -1,0 +1,14 @@
+$ javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main 2>&1 & (if exist data\books.txt type data\books.txt)
+(입력)
+2
+B2
+0
+(출력)
+도서 대출 프로그램을 시작합니다
+1 대출  2 반납  3 목록  0 종료
+> 책 번호: 대출 중이 아닌 책입니다
+1 대출  2 반납  3 목록  0 종료
+> 프로그램을 끝냅니다
+B1,객체지향의 사실과 오해,
+B2,클린 아키텍처,
+B3,도메인 주도 설계 첫걸음,
