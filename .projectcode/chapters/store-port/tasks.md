@@ -13,7 +13,7 @@
   - 실행하면: 메뉴와 LoanCheck 동작은 그대로다. 저장을 Main과 LoanCheck가 만든다
   - Why: 서비스가 저장을 만들지 않아야 서비스를 고치지 않고 저장을 바꿀 수 있다
   - 다른 장: project-setup, layered-loan, use-case-port
-- [ ] T3 메모리 저장을 어댑터로 바꾸기
+- [x] T3 메모리 저장을 어댑터로 바꾸기
   - 근거: S3
   - 파일: hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/BookRepository.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 메뉴와 LoanCheck 동작은 그대로다. BookRepository 대신 MemoryBookAdapter가 있다
