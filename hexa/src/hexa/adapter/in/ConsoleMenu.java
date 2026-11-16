@@ -15,7 +15,7 @@ public class ConsoleMenu {
 
     public void run() {
         while (true) {
-            System.out.println("1 대출  2 반납  0 종료");
+            System.out.println("1 대출  2 반납  3 목록  0 종료");
             System.out.print("> ");
             String choice = scanner.nextLine();
 
@@ -31,6 +31,11 @@ public class ConsoleMenu {
                 String bookId = scanner.nextLine();
                 BookView book = loanUseCase.returnBook(bookId);
                 System.out.println(book.title() + " 반납했습니다");
+            } else if (choice.equals("3")) {
+                for (BookView book : loanUseCase.listBooks()) {
+                    String status = book.borrowed() ? "대출 중" : "대출 가능";
+                    System.out.println(book.id() + " " + book.title() + " " + status);
+                }
             } else if (choice.equals("0")) {
                 System.out.println("프로그램을 끝냅니다");
                 break;

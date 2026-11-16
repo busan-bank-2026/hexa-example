@@ -1,5 +1,8 @@
 package hexa.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import hexa.application.port.in.BookView;
 import hexa.application.port.in.LoanUseCase;
 import hexa.application.port.out.BookPort;
@@ -26,6 +29,15 @@ public class LoanService implements LoanUseCase {
         book.returnBook();
         bookPort.save(book);
         return toView(book);
+    }
+
+    @Override
+    public List<BookView> listBooks() {
+        List<BookView> views = new ArrayList<>();
+        for (Book book : bookPort.findAll()) {
+            views.add(toView(book));
+        }
+        return views;
     }
 
     private BookView toView(Book book) {

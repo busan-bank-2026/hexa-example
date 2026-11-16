@@ -1,13 +1,15 @@
 package hexa.adapter.out;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import hexa.application.port.out.BookPort;
 import hexa.domain.Book;
 
 public class MemoryBookAdapter implements BookPort {
-    private final Map<String, Book> books = new HashMap<>();
+    private final Map<String, Book> books = new LinkedHashMap<>();
 
     public MemoryBookAdapter() {
         save(new Book("B1", "객체지향의 사실과 오해"));
@@ -18,6 +20,11 @@ public class MemoryBookAdapter implements BookPort {
     @Override
     public Book findById(String id) {
         return books.get(id);
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return new ArrayList<>(books.values());
     }
 
     @Override

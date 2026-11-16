@@ -29,6 +29,11 @@ public class FileBookAdapter implements BookPort {
     }
 
     @Override
+    public List<Book> findAll() {
+        return new ArrayList<>(readAll().values());
+    }
+
+    @Override
     public void save(Book book) {
         Map<String, Book> books = readAll();
         books.put(book.getId(), book);
