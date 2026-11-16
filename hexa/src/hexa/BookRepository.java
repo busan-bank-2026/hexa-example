@@ -3,7 +3,7 @@ package hexa;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BookRepository {
+public class BookRepository implements BookPort {
     private final Map<String, Book> books = new HashMap<>();
 
     public BookRepository() {
@@ -12,10 +12,12 @@ public class BookRepository {
         save(new Book("B3", "도메인 주도 설계 첫걸음"));
     }
 
+    @Override
     public Book findById(String id) {
         return books.get(id);
     }
 
+    @Override
     public void save(Book book) {
         books.put(book.getId(), book);
     }
