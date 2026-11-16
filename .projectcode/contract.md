@@ -8,9 +8,8 @@
 | IDE | 이클립스. hexa에 .project와 .classpath를 넣는다 |
 | 빌드 도구 | 없음 |
 | 학생 코드 라이브러리 | 없음 |
-| 저장소 | HashMap. 6장부터 파일. 13장만 Oracle XE 21c |
+| 저장소 | HashMap. 6장부터 파일 |
 | 테스트 | JUnit 5 (tests/lib/junit-platform-console-standalone.jar). 검증용이다. 학생이 테스트를 쓰는 장에서 hexa에 붙인다 |
-| DB 드라이버 | 13장만 ojdbc11.jar (오라클 설치 폴더에서 복사) |
 | 파일 형식 | 한 줄에 하나. 쉼표로 나눈 글자 |
 | 환경 | 폐쇄망. 인터넷에서 받는 것을 쓰지 않는다 |
 
@@ -20,7 +19,7 @@
 |---|---|
 | 학생 코드 | hexa |
 | 행동 테스트 | tests. 검증용이다. 학생에게 주지 않는다 |
-| jar | tests/lib에 검증용 JUnit jar. hexa/lib에 13장의 ojdbc jar |
+| jar | tests/lib에 검증용 JUnit jar |
 | 컴파일 결과 | hexa/bin, tests/bin. git에 올리지 않는다 |
 
 ## 실행
