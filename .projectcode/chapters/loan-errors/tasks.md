@@ -1,7 +1,7 @@
 # loan-errors 작업
 
 - [x] 테스트 작성
-- [ ] T1 콘솔 메뉴가 예외를 메시지로 바꾸기
+- [x] T1 콘솔 메뉴가 예외를 메시지로 바꾸기
   - 근거: S1, S3, S5
   - 파일: hexa/src/hexa/adapter/in/ConsoleMenu.java
   - 실행하면: 대출 중인 책을 빌리면 이미 대출 중인 책입니다가 나오고 메뉴로 돌아간다. 없는 책 B9는 아직 NullPointerException으로 멈춘다

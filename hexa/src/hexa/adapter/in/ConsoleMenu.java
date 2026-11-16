@@ -20,26 +20,30 @@ public class ConsoleMenu {
             System.out.print("> ");
             String choice = scanner.nextLine();
 
-            if (choice.equals("1")) {
-                System.out.print("회원 번호: ");
-                String memberId = scanner.nextLine();
-                System.out.print("책 번호: ");
-                String bookId = scanner.nextLine();
-                BookView book = loanUseCase.borrow(new BorrowCommand(memberId, bookId));
-                System.out.println(book.title() + " 대출했습니다");
-            } else if (choice.equals("2")) {
-                System.out.print("책 번호: ");
-                String bookId = scanner.nextLine();
-                BookView book = loanUseCase.returnBook(bookId);
-                System.out.println(book.title() + " 반납했습니다");
-            } else if (choice.equals("3")) {
-                for (BookView book : loanUseCase.listBooks()) {
-                    String status = book.borrowed() ? "대출 중" : "대출 가능";
-                    System.out.println(book.id() + " " + book.title() + " " + status);
+            try {
+                if (choice.equals("1")) {
+                    System.out.print("회원 번호: ");
+                    String memberId = scanner.nextLine();
+                    System.out.print("책 번호: ");
+                    String bookId = scanner.nextLine();
+                    BookView book = loanUseCase.borrow(new BorrowCommand(memberId, bookId));
+                    System.out.println(book.title() + " 대출했습니다");
+                } else if (choice.equals("2")) {
+                    System.out.print("책 번호: ");
+                    String bookId = scanner.nextLine();
+                    BookView book = loanUseCase.returnBook(bookId);
+                    System.out.println(book.title() + " 반납했습니다");
+                } else if (choice.equals("3")) {
+                    for (BookView book : loanUseCase.listBooks()) {
+                        String status = book.borrowed() ? "대출 중" : "대출 가능";
+                        System.out.println(book.id() + " " + book.title() + " " + status);
+                    }
+                } else if (choice.equals("0")) {
+                    System.out.println("프로그램을 끝냅니다");
+                    break;
                 }
-            } else if (choice.equals("0")) {
-                System.out.println("프로그램을 끝냅니다");
-                break;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
