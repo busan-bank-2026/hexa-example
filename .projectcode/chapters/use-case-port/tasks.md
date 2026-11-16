@@ -19,7 +19,7 @@
   - 실행하면: 메뉴 동작은 그대로다. 메뉴는 LoanService 대신 LoanUseCase만 안다
   - Why: 앱이 바깥에 여는 문에 이름을 붙이면 어댑터는 그 문만 안다
   - 다른 장: project-setup, layered-loan
-- [ ] T4 두 번째 입구 만들기
+- [x] T4 두 번째 입구 만들기
   - 근거: S4
   - 파일: hexa/src/hexa/LoanCheck.java
   - 실행하면: LoanCheck를 Run하면 B1을 M1에게 대출: 객체지향의 사실과 오해, B1 반납: 객체지향의 사실과 오해가 나온다
