@@ -1,6 +1,10 @@
 # overdue-notice 작업
 
 - [x] 테스트 작성
+- [x] 테스트 보강
+  - 근거: due-date S3 테스트가 메뉴의 4 연체 알림 글까지 연체로 센다
+  - 파일: tests/hexa/DueDateTest.java
+  - 다른 장: due-date
 - [ ] T1 알림 포트로 연체 알림 보내기
   - 근거: S1, S2, S3, S4
   - 파일: hexa/src/hexa/application/port/out/NotifyPort.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/out/ConsoleNotifyAdapter.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java

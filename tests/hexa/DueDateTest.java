@@ -116,13 +116,13 @@ class DueDateTest {
         String out = runMain("1\nM1\nB1\n3\n0\n");
         assertTrue(out.contains("B1 객체지향의 사실과 오해 대출 중 반납 기한 " + due()), out);
         assertTrue(out.contains("B2 클린 아키텍처 대출 가능"), out);
-        assertFalse(out.contains("연체"), out);
+        assertFalse(out.replace("4 연체 알림", "").contains("연체"), out);
 
         Files.write(FILE, List.of("B1,객체지향의 사실과 오해,M1,2020-01-01", "B2,클린 아키텍처,,", "B3,도메인 주도 설계 첫걸음,,"));
         String late = runMain("3\n0\n");
         assertTrue(late.contains("B1 객체지향의 사실과 오해 대출 중 반납 기한 2020-01-01 연체"), late);
         assertTrue(late.contains("B2 클린 아키텍처 대출 가능"), late);
-        assertEquals(1, late.split("연체", -1).length - 1, late);
+        assertEquals(1, late.replace("4 연체 알림", "").split("연체", -1).length - 1, late);
     }
 
     @Test
