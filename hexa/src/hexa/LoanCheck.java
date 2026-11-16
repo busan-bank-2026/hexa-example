@@ -1,5 +1,8 @@
 package hexa;
 
+import hexa.application.LoanService;
+import hexa.application.port.in.LoanUseCase;
+import hexa.application.port.out.BookPort;
 import hexa.domain.Book;
 
 public class LoanCheck {

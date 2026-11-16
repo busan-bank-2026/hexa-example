@@ -2,6 +2,7 @@ package hexa;
 
 import java.util.Scanner;
 
+import hexa.application.port.in.LoanUseCase;
 import hexa.domain.Book;
 
 public class ConsoleMenu {

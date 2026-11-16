@@ -7,7 +7,7 @@
   - 실행하면: 메뉴 동작은 그대로다. Book이 hexa/domain 폴더에 있다
   - Why: 대출 규칙은 바깥 어느 것도 모르는 가운데에 둔다
   - 다른 장: layered-loan, use-case-port, store-port
-- [ ] T2 서비스와 포트를 application 패키지로 옮기기
+- [x] T2 서비스와 포트를 application 패키지로 옮기기
   - 근거: S2
   - 파일: hexa/src/hexa/application/LoanService.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/port/out/BookPort.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/BookPort.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: LoanCheck 동작은 그대로다. 서비스와 두 포트가 hexa/application 폴더에 있다

@@ -1,5 +1,9 @@
 package hexa;
 
+import hexa.application.LoanService;
+import hexa.application.port.in.LoanUseCase;
+import hexa.application.port.out.BookPort;
+
 public class Main {
 
     public static void main(String[] args) {

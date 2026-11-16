@@ -1,5 +1,7 @@
-package hexa;
+package hexa.application;
 
+import hexa.application.port.in.LoanUseCase;
+import hexa.application.port.out.BookPort;
 import hexa.domain.Book;
 
 public class LoanService implements LoanUseCase {

@@ -1,4 +1,4 @@
-package hexa;
+package hexa.application.port.out;
 
 import hexa.domain.Book;
 
