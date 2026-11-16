@@ -7,7 +7,7 @@
   - 실행하면: 대출 중인 책을 빌리면 이미 대출 중인 책입니다가 나오고 메뉴로 돌아간다. 없는 책 B9는 아직 NullPointerException으로 멈춘다
   - Why: 실패를 어떻게 보여 줄지는 바깥 어댑터가 정하고 안쪽은 메시지를 담은 예외만 던진다
   - 다른 장: project-setup, layered-loan, use-case-port, hexagon-packages, book-list, borrow-command
-- [ ] T2 없는 책 번호를 오류로 알리기
+- [x] T2 없는 책 번호를 오류로 알리기
   - 근거: S2
   - 파일: hexa/src/hexa/application/LoanService.java
   - 실행하면: B9를 빌리거나 반납하면 책을 찾을 수 없습니다가 나오고 메뉴로 돌아간다

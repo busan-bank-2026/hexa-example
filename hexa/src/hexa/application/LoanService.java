@@ -18,7 +18,7 @@ public class LoanService implements LoanUseCase {
 
     @Override
     public BookView borrow(BorrowCommand command) {
-        Book book = bookPort.findById(command.bookId());
+        Book book = findBook(command.bookId());
         book.borrow(command.memberId());
         bookPort.save(book);
         return toView(book);
@@ -26,7 +26,7 @@ public class LoanService implements LoanUseCase {
 
     @Override
     public BookView returnBook(String bookId) {
-        Book book = bookPort.findById(bookId);
+        Book book = findBook(bookId);
         book.returnBook();
         bookPort.save(book);
         return toView(book);
@@ -39,6 +39,14 @@ public class LoanService implements LoanUseCase {
             views.add(toView(book));
         }
         return views;
+    }
+
+    private Book findBook(String bookId) {
+        Book book = bookPort.findById(bookId);
+        if (book == null) {
+            throw new IllegalArgumentException("책을 찾을 수 없습니다");
+        }
+        return book;
     }
 
     private BookView toView(Book book) {
