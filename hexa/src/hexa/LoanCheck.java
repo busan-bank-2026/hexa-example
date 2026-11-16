@@ -3,7 +3,8 @@ package hexa;
 public class LoanCheck {
 
     public static void main(String[] args) {
-        LoanUseCase loanUseCase = new LoanService();
+        BookPort bookPort = new BookRepository();
+        LoanUseCase loanUseCase = new LoanService(bookPort);
 
         Book borrowed = loanUseCase.borrow("M1", "B1");
         System.out.println("B1을 M1에게 대출: " + borrowed.getTitle());

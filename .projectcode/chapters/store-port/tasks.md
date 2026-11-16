@@ -7,7 +7,7 @@
   - 실행하면: 메뉴 동작은 그대로다. 서비스는 BookPort 타입으로 저장을 쓴다
   - Why: 서비스가 바깥 저장에 바라는 것을 인터페이스로 적어야 구현을 바꿀 수 있다
   - 다른 장: layered-loan, use-case-port
-- [ ] T2 서비스가 포트를 받게 하기
+- [x] T2 서비스가 포트를 받게 하기
   - 근거: S2
   - 파일: hexa/src/hexa/LoanService.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 메뉴와 LoanCheck 동작은 그대로다. 저장을 Main과 LoanCheck가 만든다

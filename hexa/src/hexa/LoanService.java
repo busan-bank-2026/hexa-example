@@ -1,7 +1,11 @@
 package hexa;
 
 public class LoanService implements LoanUseCase {
-    private final BookPort bookPort = new BookRepository();
+    private final BookPort bookPort;
+
+    public LoanService(BookPort bookPort) {
+        this.bookPort = bookPort;
+    }
 
     @Override
     public Book borrow(String memberId, String bookId) {
