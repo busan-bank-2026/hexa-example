@@ -12,6 +12,6 @@
   - 파일: hexa/test/hexa/DependencyRuleTest.java
   - 실행하면: 규칙 테스트 세 개가 초록불이다. LoanService에 어댑터 import를 넣으면 application 규칙이 빨간불이다
   - Why: 육각형 안쪽이 바깥을 모르는 규칙과 어댑터끼리 모르는 규칙도 같은 방법으로 지킨다
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식

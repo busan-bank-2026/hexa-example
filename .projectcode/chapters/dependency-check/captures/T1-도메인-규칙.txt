@@ -1,0 +1,56 @@
+$ javac -d bin -cp lib/junit-platform-console-standalone.jar test/hexa/DependencyRuleTest.java && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & powershell -NoProfile -Command "[IO.File]::WriteAllText('src/hexa/domain/Book.java', [IO.File]::ReadAllText('src/hexa/domain/Book.java').Replace('package hexa.domain;', 'package hexa.domain;' + [char]10 + [char]10 + 'import hexa.adapter.out.MemoryBookAdapter;'))" && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & git checkout -- src/hexa/domain/Book.java
+╷
+├─ JUnit Platform Suite ✔
+├─ JUnit Jupiter ✔
+│  └─ DependencyRuleTest ✔
+│     └─ domainKnowsOnlyDomain() ✔
+└─ JUnit Vintage ✔
+
+Test run finished after 68 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         1 tests successful      ]
+[         0 tests failed          ]
+
+╷
+├─ JUnit Platform Suite ✔
+├─ JUnit Jupiter ✔
+│  └─ DependencyRuleTest ✔
+│     └─ domainKnowsOnlyDomain() ✘ import hexa.adapter.out.MemoryBookAdapter; ==> expected: <false> but was: <true>
+└─ JUnit Vintage ✔
+
+Failures (1):
+  JUnit Jupiter:DependencyRuleTest:domainKnowsOnlyDomain()
+    MethodSource [className = 'hexa.DependencyRuleTest', methodName = 'domainKnowsOnlyDomain', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: import hexa.adapter.out.MemoryBookAdapter; ==> expected: <false> but was: <true>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+       org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+       org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+       hexa.DependencyRuleTest.domainKnowsOnlyDomain(DependencyRuleTest.java:20)
+       java.base/java.lang.reflect.Method.invoke(Method.java:580)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+Test run finished after 76 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         1 tests found           ]
+[         0 tests skipped         ]
+[         1 tests started         ]
+[         0 tests aborted         ]
+[         0 tests successful      ]
+[         1 tests failed          ]

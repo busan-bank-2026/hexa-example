@@ -1,0 +1,19 @@
+{
+  "chapter": "dependency-check",
+  "command": "javac -d bin -cp lib/junit-platform-console-standalone.jar test/hexa/DependencyRuleTest.java && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-도메인-규칙.txt", "task": "T1", "commit": "70daf56", "screen": "학생 테스트 실행 두 번",
+      "see": "처음에는 domainKnowsOnlyDomain이 초록불이고 1 tests successful이다. Book에 어댑터 import를 넣고 다시 돌리면 빨간불에 import hexa.adapter.out.MemoryBookAdapter; 줄이 보인다",
+      "run": { "command": "javac -d bin -cp lib/junit-platform-console-standalone.jar test/hexa/DependencyRuleTest.java && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & powershell -NoProfile -Command \"[IO.File]::WriteAllText('src/hexa/domain/Book.java', [IO.File]::ReadAllText('src/hexa/domain/Book.java').Replace('package hexa.domain;', 'package hexa.domain;' + [char]10 + [char]10 + 'import hexa.adapter.out.MemoryBookAdapter;'))\" && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & git checkout -- src/hexa/domain/Book.java", "input": "" } },
+    { "file": "T2-세-규칙.txt", "task": "T2", "commit": "2ffe037", "screen": "학생 테스트 실행 두 번",
+      "see": "처음에는 규칙 테스트 세 개가 초록불이고 3 tests successful이다. LoanService에 어댑터 import를 넣고 다시 돌리면 applicationDoesNotKnowAdapter만 빨간불이다",
+      "run": { "command": "javac -d bin -cp lib/junit-platform-console-standalone.jar test/hexa/DependencyRuleTest.java && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & powershell -NoProfile -Command \"[IO.File]::WriteAllText('src/hexa/application/LoanService.java', [IO.File]::ReadAllText('src/hexa/application/LoanService.java').Replace('package hexa.application;', 'package hexa.application;' + [char]10 + [char]10 + 'import hexa.adapter.out.MemoryBookAdapter;'))\" && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & git checkout -- src/hexa/application/LoanService.java", "input": "" } },
+    { "file": "done-규칙-통과.txt", "task": "done", "commit": "2ffe037", "screen": "학생 테스트 실행",
+      "see": "spec 실행 예시처럼 규칙 테스트 세 개가 초록불이고 3 tests successful이다",
+      "run": { "input": "" } },
+    { "file": "done-깨-보기.txt", "task": "done", "commit": "2ffe037", "screen": "Main 실행과 학생 테스트 실행",
+      "see": "Book에 어댑터 import를 넣어도 Main은 컴파일되고 메뉴가 돈다. 학생 테스트는 domainKnowsOnlyDomain이 빨간불이고 2 tests successful, 1 tests failed다",
+      "run": { "command": "powershell -NoProfile -Command \"[IO.File]::WriteAllText('src/hexa/domain/Book.java', [IO.File]::ReadAllText('src/hexa/domain/Book.java').Replace('package hexa.domain;', 'package hexa.domain;' + [char]10 + [char]10 + 'import hexa.adapter.out.MemoryBookAdapter;'))\" && javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main & javac -d bin -cp lib/junit-platform-console-standalone.jar test/hexa/DependencyRuleTest.java && java -jar lib/junit-platform-console-standalone.jar execute -cp bin --select-class hexa.DependencyRuleTest --disable-banner --disable-ansi-colors & git checkout -- src/hexa/domain/Book.java", "input": "0\n" } }
+  ]
+}
