@@ -1,0 +1,19 @@
+{
+  "chapter": "book-list",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-응답-모델.txt", "task": "T1", "commit": "a03a986", "screen": "대출 반납 콘솔",
+      "see": "대출과 반납 결과 글은 그대로다. 1, M1, B1을 넣으면 객체지향의 사실과 오해 대출했습니다, 2, B1을 넣으면 반납했습니다가 나온다. 메뉴에는 아직 3 목록이 없다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n0\n" } },
+    { "file": "T2-책-목록.txt", "task": "T2", "commit": "7a08b68", "screen": "대출 반납 목록 콘솔",
+      "see": "메뉴에 3 목록이 생긴다. 처음 3을 고르면 세 책이 대출 가능이고 B1을 대출한 뒤 3을 고르면 B1 객체지향의 사실과 오해 대출 중이 찍힌다",
+      "run": { "input": "3\n1\nM1\nB1\n3\n0\n" } },
+    { "file": "done-책-목록.txt", "task": "done", "commit": "7a08b68", "screen": "대출 반납 목록 콘솔",
+      "see": "spec 실행 예시처럼 B1을 대출한 뒤 목록에 B1은 대출 중, B2와 B3은 대출 가능이 찍힌다",
+      "run": { "input": "1\nM1\nB1\n3\n0\n" } },
+    { "file": "done-두-번째-입구.txt", "task": "done", "commit": "7a08b68", "screen": "LoanCheck 콘솔",
+      "see": "file-store 장 끝 사진과 같게 대출과 반납 두 줄이 나온다. 두 번째 입구는 응답 모델의 제목을 찍는다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } }
+  ]
+}
