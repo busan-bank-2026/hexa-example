@@ -1,6 +1,6 @@
 # 폴더 구조
 
-기준 장: layered-loan
+기준 장: use-case-port
 
 ```
 hexa/
@@ -11,7 +11,10 @@ hexa/
     hexa/
       Book.java
       BookRepository.java
+      ConsoleMenu.java
+      LoanCheck.java
       LoanService.java
+      LoanUseCase.java
       Main.java
     .gitkeep
   .classpath
