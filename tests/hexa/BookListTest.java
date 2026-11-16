@@ -93,7 +93,7 @@ class BookListTest {
         assertEquals(before, listBooks.invoke(service));
         assertEquals(3, ((List<?>) before).size());
 
-        port.getMethod("borrow", String.class, String.class).invoke(service, "M1", "B2");
+        Find.borrow(service, "M1", "B2");
         List<?> after = (List<?>) listBooks.invoke(service);
         assertEquals("B1", get(after.get(0), "id"));
         assertEquals(false, get(after.get(0), "borrowed"));
@@ -119,13 +119,13 @@ class BookListTest {
         }
 
         Class<?> port = Find.type("LoanUseCase");
-        Method borrow = port.getMethod("borrow", String.class, String.class);
+        Method borrow = Find.borrowMethod();
         Method returnBook = port.getMethod("returnBook", String.class);
         assertEquals(view, borrow.getReturnType());
         assertEquals(view, returnBook.getReturnType());
 
         Object service = Find.newLoanService();
-        Object borrowed = borrow.invoke(service, "M1", "B1");
+        Object borrowed = Find.borrow(service, "M1", "B1");
         assertEquals("B1", get(borrowed, "id"));
         assertEquals("객체지향의 사실과 오해", get(borrowed, "title"));
         assertEquals(true, get(borrowed, "borrowed"));

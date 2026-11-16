@@ -44,10 +44,9 @@ class UseCasePortTest {
         assertTrue(port.isInterface());
         assertTrue(port.isAssignableFrom(Find.type("LoanService")));
 
-        Method borrow = port.getMethod("borrow", String.class, String.class);
         Method returnBook = port.getMethod("returnBook", String.class);
         Object service = newService();
-        assertEquals("클린 아키텍처", title(borrow.invoke(service, "M1", "B2")));
+        assertEquals("클린 아키텍처", title(Find.borrow(service, "M1", "B2")));
         assertEquals("클린 아키텍처", title(returnBook.invoke(service, "B2")));
 
         Class<?> menu = Find.type("ConsoleMenu");
@@ -58,13 +57,12 @@ class UseCasePortTest {
     @DisplayName("S2 서비스는 콘솔을 쓰지 않는다. 받은 값으로 대출과 반납을 하고 결과로 책을 돌려준다")
     void s2() throws Exception {
         Object service = newService();
-        Method borrow = Find.type("LoanUseCase").getMethod("borrow", String.class, String.class);
         Method returnBook = Find.type("LoanUseCase").getMethod("returnBook", String.class);
         Object[] books = new Object[2];
         String out = captureOut(() -> {
-            books[0] = borrow.invoke(service, "M1", "B1");
+            books[0] = Find.borrow(service, "M1", "B1");
             books[1] = returnBook.invoke(service, "B1");
-            books[0] = borrow.invoke(service, "M2", "B1");
+            books[0] = Find.borrow(service, "M2", "B1");
         });
         assertEquals("", out);
         assertEquals("객체지향의 사실과 오해", title(books[0]));

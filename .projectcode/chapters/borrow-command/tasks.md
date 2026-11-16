@@ -1,6 +1,6 @@
 # borrow-command 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 대출 요청을 입력 모델로 받기
   - 근거: S1
   - 파일: hexa/src/hexa/application/port/in/BorrowCommand.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/LoanCheck.java

@@ -1,5 +1,6 @@
 package hexa;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 class Find {
@@ -46,5 +47,22 @@ class Find {
             }
         }
         return service.getConstructor().newInstance();
+    }
+
+    static Method borrowMethod() throws Exception {
+        Class<?> port = type("LoanUseCase");
+        if (exists("BorrowCommand")) {
+            return port.getMethod("borrow", type("BorrowCommand"));
+        }
+        return port.getMethod("borrow", String.class, String.class);
+    }
+
+    static Object borrow(Object service, String memberId, String bookId) throws Exception {
+        if (exists("BorrowCommand")) {
+            Object command = type("BorrowCommand").getConstructor(String.class, String.class)
+                    .newInstance(memberId, bookId);
+            return borrowMethod().invoke(service, command);
+        }
+        return borrowMethod().invoke(service, memberId, bookId);
     }
 }
