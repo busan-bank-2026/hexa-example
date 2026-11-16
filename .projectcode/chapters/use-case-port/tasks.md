@@ -1,0 +1,29 @@
+# use-case-port 작업
+
+- [ ] 테스트 작성
+- [ ] T1 메뉴를 어댑터로 옮기기
+  - 근거: S3
+  - 파일: hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
+  - 실행하면: 메뉴, 대출, 반납이 layered-loan과 똑같이 동작한다
+  - Why: 콘솔을 다루는 일을 한곳에 모아야 서비스에서 뗄 수 있다
+  - 다른 장: project-setup, layered-loan
+- [ ] T2 서비스에서 콘솔 떼어 내기
+  - 근거: S2
+  - 파일: hexa/src/hexa/LoanService.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
+  - 실행하면: 메뉴 동작은 그대로다. 서비스 코드에 Scanner와 System.out이 없다
+  - Why: 서비스가 값을 받아 책을 돌려줘야 콘솔 없이도 부를 수 있다
+  - 다른 장: project-setup, layered-loan
+- [ ] T3 유스케이스 포트 열기
+  - 근거: S1
+  - 파일: hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
+  - 실행하면: 메뉴 동작은 그대로다. 메뉴는 LoanService 대신 LoanUseCase만 안다
+  - Why: 앱이 바깥에 여는 문에 이름을 붙이면 어댑터는 그 문만 안다
+  - 다른 장: project-setup, layered-loan
+- [ ] T4 두 번째 입구 만들기
+  - 근거: S4
+  - 파일: hexa/src/hexa/LoanCheck.java
+  - 실행하면: LoanCheck를 Run하면 B1을 M1에게 대출: 객체지향의 사실과 오해, B1 반납: 객체지향의 사실과 오해가 나온다
+  - Why: 콘솔 말고 다른 입구도 같은 포트를 부를 수 있다
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
