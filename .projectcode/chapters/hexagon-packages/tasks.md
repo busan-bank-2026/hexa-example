@@ -1,0 +1,24 @@
+# hexagon-packages 작업
+
+- [ ] 테스트 작성
+- [ ] T1 책을 domain 패키지로 옮기기
+  - 근거: S1
+  - 파일: hexa/src/hexa/domain/Book.java, hexa/src/hexa/Book.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/BookPort.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/LoanCheck.java
+  - 실행하면: 메뉴 동작은 그대로다. Book이 hexa/domain 폴더에 있다
+  - Why: 대출 규칙은 바깥 어느 것도 모르는 가운데에 둔다
+  - 다른 장: layered-loan, use-case-port, store-port
+- [ ] T2 서비스와 포트를 application 패키지로 옮기기
+  - 근거: S2
+  - 파일: hexa/src/hexa/application/LoanService.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/port/out/BookPort.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/BookPort.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
+  - 실행하면: LoanCheck 동작은 그대로다. 서비스와 두 포트가 hexa/application 폴더에 있다
+  - Why: 유스케이스와 그것이 바깥에 바라는 포트를 한 묶음으로 두고 도메인만 알게 한다
+  - 다른 장: project-setup, layered-loan, use-case-port, store-port
+- [ ] T3 어댑터를 adapter 패키지로 옮기기
+  - 근거: S3, S4
+  - 파일: hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/adapter/out/MemoryBookAdapter.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
+  - 실행하면: 메뉴 동작은 그대로다. hexa 폴더 바로 아래에는 Main과 LoanCheck만 남는다
+  - Why: 바깥과 닿는 코드를 가장자리에 모으고 모두를 만들어 끼우는 일은 입구만 한다
+  - 다른 장: project-setup, layered-loan, use-case-port, store-port
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
