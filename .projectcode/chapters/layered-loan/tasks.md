@@ -1,6 +1,6 @@
 # layered-loan 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 메뉴 보여주기
   - 근거: S1, S5
   - 파일: hexa/src/hexa/Main.java
