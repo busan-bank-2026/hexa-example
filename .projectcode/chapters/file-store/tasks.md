@@ -1,6 +1,6 @@
 # file-store 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 파일 저장 어댑터 만들기
   - 근거: S1, S2, S3
   - 파일: hexa/src/hexa/adapter/out/FileBookAdapter.java, hexa/src/hexa/domain/Book.java

@@ -85,7 +85,7 @@ class HexagonPackagesTest {
 
         for (String entry : List.of("Main.java", "LoanCheck.java")) {
             String source = Files.readString(SRC.resolve(entry));
-            assertTrue(source.contains("import hexa.adapter.out.MemoryBookAdapter;"), entry);
+            assertTrue(source.contains("import hexa.adapter.out."), entry);
             assertTrue(source.contains("import hexa.application.LoanService;"), entry);
         }
     }

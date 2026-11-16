@@ -9,13 +9,24 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LayeredLoanTest {
 
     private static final String MENU = "1 대출  2 반납  0 종료";
+
+    @BeforeEach
+    @AfterEach
+    void clean() throws Exception {
+        Files.deleteIfExists(Path.of("data/books.txt"));
+        Files.deleteIfExists(Path.of("data"));
+    }
 
     private String run(String input) {
         InputStream originalIn = System.in;

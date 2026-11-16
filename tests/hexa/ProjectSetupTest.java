@@ -10,10 +10,19 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ProjectSetupTest {
+
+    @BeforeEach
+    @AfterEach
+    void clean() throws Exception {
+        Files.deleteIfExists(Path.of("data/books.txt"));
+        Files.deleteIfExists(Path.of("data"));
+    }
 
     @Test
     @DisplayName("S1 프로그램을 실행하면 콘솔에 시작 글을 보여준다")
