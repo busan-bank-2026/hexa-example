@@ -1,6 +1,6 @@
 # project-setup 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 이클립스 프로젝트 만들기
   - 근거: S2
   - 파일: hexa/.project, hexa/.classpath, hexa/.settings/org.eclipse.jdt.core.prefs, hexa/.settings/org.eclipse.core.resources.prefs, .gitignore
