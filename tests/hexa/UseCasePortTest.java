@@ -34,7 +34,7 @@ class UseCasePortTest {
     }
 
     private String title(Object book) throws Exception {
-        return (String) book.getClass().getMethod("getTitle").invoke(book);
+        return (String) book.getClass().getMethod("title").invoke(book);
     }
 
     @Test

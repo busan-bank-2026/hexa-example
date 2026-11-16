@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 class LayeredLoanTest {
 
-    private static final String MENU = "1 대출  2 반납  0 종료";
+    private static final String MENU = "1 대출  2 반납  ";
 
     @BeforeEach
     @AfterEach

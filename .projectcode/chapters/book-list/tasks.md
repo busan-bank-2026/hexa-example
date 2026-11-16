@@ -1,6 +1,6 @@
 # book-list 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 포트가 응답 모델을 돌려주게 하기
   - 근거: S3, S4
   - 파일: hexa/src/hexa/application/port/in/BookView.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/LoanCheck.java
