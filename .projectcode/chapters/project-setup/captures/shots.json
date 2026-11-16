@@ -1,0 +1,16 @@
+{
+  "chapter": "project-setup",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-프로젝트-파일.txt", "task": "T1", "commit": "5847823", "screen": "hexa 폴더 파일 목록",
+      "see": "이클립스 프로젝트 파일과 빈 src 폴더(src/.gitkeep)가 보인다",
+      "run": { "command": "git ls-files", "cwd": "hexa" } },
+    { "file": "T2-시작-글.txt", "task": "T2", "commit": "992490f", "screen": "Main 실행 콘솔",
+      "see": "콘솔에 도서 대출 프로그램을 시작합니다가 나온다",
+      "run": {} },
+    { "file": "done-시작-글.txt", "task": "done", "commit": "992490f", "screen": "Main 실행 콘솔",
+      "see": "콘솔에 도서 대출 프로그램을 시작합니다가 나온다",
+      "run": {} }
+  ]
+}

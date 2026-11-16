@@ -1,0 +1,2 @@
+$ javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main
+도서 대출 프로그램을 시작합니다
