@@ -11,7 +11,7 @@
 | hexa/.settings/org.eclipse.core.resources.prefs | 새로 | 파일 인코딩을 UTF-8로 정한다 |
 | hexa/src/.gitkeep | 새로 | 빈 src 폴더를 git에 남긴다. T1 시점에 이클립스가 src를 찾는다 |
 | tests/lib/junit-platform-console-standalone.jar | 새로 | 검증용 JUnit 5 실행기. ddd-example에서 복사한다 |
-| tests/project-setup/ProjectSetupTest.java | 새로 | S1, S2 행동 테스트 |
+| tests/hexa/ProjectSetupTest.java | 새로 | S1, S2 행동 테스트 |
 | .gitignore | 고침 | hexa/bin, tests/bin을 올리지 않는다 |
 
 ## 코드 계획
@@ -51,7 +51,7 @@ public static void main(String[] args) {
 
 저장소 루트에서 실행한다.
 javac -encoding UTF-8 -d hexa/bin --source-path hexa/src hexa/src/hexa/Main.java
-javac -encoding UTF-8 -d tests/bin -cp "hexa/bin;tests/lib/junit-platform-console-standalone.jar" tests/*/*.java
+javac -encoding UTF-8 -d tests/bin -cp "hexa/bin;tests/lib/junit-platform-console-standalone.jar" tests/hexa/*.java
 java -jar tests/lib/junit-platform-console-standalone.jar execute -cp "hexa/bin;tests/bin" --scan-classpath
 
 ## 할 일 연결

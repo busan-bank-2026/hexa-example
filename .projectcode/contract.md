@@ -26,7 +26,7 @@
 ## 실행
 
 - 실행: cd hexa, javac -d bin --source-path src src/hexa/Main.java, java -cp bin hexa.Main
-- 테스트: 저장소 루트에서 javac -encoding UTF-8 -d hexa/bin --source-path hexa/src hexa/src/hexa/Main.java, javac -encoding UTF-8 -d tests/bin -cp "hexa/bin;tests/lib/junit-platform-console-standalone.jar" tests/*/*.java, java -jar tests/lib/junit-platform-console-standalone.jar execute -cp "hexa/bin;tests/bin" --scan-classpath
+- 테스트: 저장소 루트에서 javac -encoding UTF-8 -d hexa/bin --source-path hexa/src hexa/src/hexa/Main.java, javac -encoding UTF-8 -d tests/bin -cp "hexa/bin;tests/lib/junit-platform-console-standalone.jar" tests/hexa/*.java, java -jar tests/lib/junit-platform-console-standalone.jar execute -cp "hexa/bin;tests/bin" --scan-classpath
 - 빌드: javac -d bin --source-path src src/hexa/Main.java
 - 초기화: 6장부터 hexa/data 폴더의 저장 파일 지우기
 
