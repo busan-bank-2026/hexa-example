@@ -1,7 +1,7 @@
 # file-store 작업
 
 - [x] 테스트 작성
-- [ ] T1 파일 저장 어댑터 만들기
+- [x] T1 파일 저장 어댑터 만들기
   - 근거: S1, S2, S3
   - 파일: hexa/src/hexa/adapter/out/FileBookAdapter.java, hexa/src/hexa/domain/Book.java
   - 실행하면: Main은 아직 메모리를 쓴다. 껐다 켜면 B1을 다시 대출할 수 있다
