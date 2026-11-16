@@ -1,0 +1,22 @@
+{
+  "chapter": "hexagon-packages",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-도메인-패키지.txt", "task": "T1", "commit": "823159f", "screen": "대출 반납 콘솔",
+      "see": "메뉴 동작은 그대로다. 1, M1, B1을 넣으면 객체지향의 사실과 오해 대출했습니다, 2, B1을 넣으면 반납했습니다가 store-port와 똑같이 나온다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n0\n" } },
+    { "file": "T2-애플리케이션-패키지.txt", "task": "T2", "commit": "bdea041", "screen": "LoanCheck 콘솔",
+      "see": "LoanCheck 동작은 그대로다. B1을 M1에게 대출: 객체지향의 사실과 오해, B1 반납: 객체지향의 사실과 오해가 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } },
+    { "file": "T3-어댑터-패키지.txt", "task": "T3", "commit": "df26ed4", "screen": "대출 반납 콘솔",
+      "see": "메뉴 동작은 그대로다. 대출했습니다와 반납했습니다가 store-port와 똑같이 나온다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n0\n" } },
+    { "file": "done-두-번째-입구.txt", "task": "done", "commit": "df26ed4", "screen": "LoanCheck 콘솔",
+      "see": "store-port 장 끝 사진과 같게 대출과 반납 두 줄이 나온다",
+      "run": { "command": "javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck", "input": "" } },
+    { "file": "done-대출-반납.txt", "task": "done", "commit": "df26ed4", "screen": "대출 반납 콘솔",
+      "see": "store-port 장 끝 사진과 같게 B1을 대출하고 반납한 뒤 프로그램을 끝냅니다가 나온다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n0\n" } }
+  ]
+}

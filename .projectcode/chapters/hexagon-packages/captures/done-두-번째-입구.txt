@@ -1,0 +1,3 @@
+$ javac -d bin --source-path src src/hexa/LoanCheck.java && java -cp bin hexa.LoanCheck
+B1을 M1에게 대출: 객체지향의 사실과 오해
+B1 반납: 객체지향의 사실과 오해

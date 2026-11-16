@@ -19,6 +19,6 @@
   - 실행하면: 메뉴 동작은 그대로다. hexa 폴더 바로 아래에는 Main과 LoanCheck만 남는다
   - Why: 바깥과 닿는 코드를 가장자리에 모으고 모두를 만들어 끼우는 일은 입구만 한다
   - 다른 장: project-setup, layered-loan, use-case-port, store-port
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식
