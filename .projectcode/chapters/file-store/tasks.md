@@ -13,6 +13,6 @@
   - 실행하면: hexa/data/books.txt에 B1,객체지향의 사실과 오해,M1이 남고 다시 켜서 B1을 대출하면 이미 대출 중인 책입니다로 멈춘다
   - Why: 같은 포트를 구현한 어댑터라 Main의 한 줄만 바꾸면 서비스를 고치지 않고 저장 방법이 바뀐다
   - 다른 장: project-setup, layered-loan, use-case-port, store-port, hexagon-packages
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식
