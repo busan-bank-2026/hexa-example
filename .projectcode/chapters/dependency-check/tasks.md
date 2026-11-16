@@ -1,6 +1,6 @@
 # dependency-check 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 JUnit을 붙이고 도메인 규칙 테스트하기
   - 근거: S1, S2
   - 파일: hexa/lib/junit-platform-console-standalone.jar, hexa/.classpath, hexa/test/hexa/DependencyRuleTest.java
