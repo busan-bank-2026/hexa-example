@@ -19,6 +19,6 @@
   - 실행하면: 메뉴와 LoanCheck 동작은 그대로다. BookRepository 대신 MemoryBookAdapter가 있다
   - Why: 메모리 저장은 여러 저장 방법 중 하나라는 것을 이름으로 드러낸다
   - 다른 장: project-setup, layered-loan, use-case-port
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식
