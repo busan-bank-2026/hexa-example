@@ -1,7 +1,7 @@
 # dependency-check 작업
 
 - [x] 테스트 작성
-- [ ] T1 JUnit을 붙이고 도메인 규칙 테스트하기
+- [x] T1 JUnit을 붙이고 도메인 규칙 테스트하기
   - 근거: S1, S2
   - 파일: hexa/lib/junit-platform-console-standalone.jar, hexa/.classpath, hexa/test/hexa/DependencyRuleTest.java
   - 실행하면: Run As, JUnit Test로 도메인 규칙 테스트가 초록불이다. Book에 어댑터 import를 넣으면 빨간불에 그 줄이 보인다
