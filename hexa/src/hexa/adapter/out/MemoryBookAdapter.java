@@ -1,4 +1,4 @@
-package hexa;
+package hexa.adapter.out;
 
 import java.util.HashMap;
 import java.util.Map;

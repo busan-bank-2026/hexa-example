@@ -13,7 +13,7 @@
   - 실행하면: LoanCheck 동작은 그대로다. 서비스와 두 포트가 hexa/application 폴더에 있다
   - Why: 유스케이스와 그것이 바깥에 바라는 포트를 한 묶음으로 두고 도메인만 알게 한다
   - 다른 장: project-setup, layered-loan, use-case-port, store-port
-- [ ] T3 어댑터를 adapter 패키지로 옮기기
+- [x] T3 어댑터를 adapter 패키지로 옮기기
   - 근거: S3, S4
   - 파일: hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/adapter/out/MemoryBookAdapter.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 메뉴 동작은 그대로다. hexa 폴더 바로 아래에는 Main과 LoanCheck만 남는다

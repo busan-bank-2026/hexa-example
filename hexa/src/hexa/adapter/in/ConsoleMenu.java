@@ -1,4 +1,4 @@
-package hexa;
+package hexa.adapter.in;
 
 import java.util.Scanner;
 

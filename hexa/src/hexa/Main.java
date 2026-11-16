@@ -1,5 +1,7 @@
 package hexa;
 
+import hexa.adapter.in.ConsoleMenu;
+import hexa.adapter.out.MemoryBookAdapter;
 import hexa.application.LoanService;
 import hexa.application.port.in.LoanUseCase;
 import hexa.application.port.out.BookPort;
