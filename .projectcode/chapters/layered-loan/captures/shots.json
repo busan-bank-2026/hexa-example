@@ -1,0 +1,22 @@
+{
+  "chapter": "layered-loan",
+  "command": "javac -d bin --source-path src src/hexa/Main.java && java -cp bin hexa.Main",
+  "cwd": "hexa",
+  "shots": [
+    { "file": "T1-메뉴-보여주기.txt", "task": "T1", "commit": "8be97da", "screen": "메뉴 콘솔",
+      "see": "메뉴가 나오고, 없는 번호 5를 넣으면 메뉴가 다시 나오고, 0을 넣으면 프로그램을 끝냅니다가 나온다",
+      "run": { "input": "5\n0\n" } },
+    { "file": "T2-책-대출.txt", "task": "T2", "commit": "4fdc7bc", "screen": "대출 콘솔",
+      "see": "1, M1, B1을 넣으면 객체지향의 사실과 오해 대출했습니다가 나온다",
+      "run": { "input": "1\nM1\nB1\n0\n" } },
+    { "file": "T3-대출-중-거절.txt", "task": "T3", "commit": "c1582da", "screen": "대출 콘솔",
+      "see": "B1을 두 번 대출하면 이미 대출 중인 책입니다 오류로 프로그램이 멈춘다",
+      "run": { "input": "1\nM1\nB1\n1\nM2\nB1\n0\n" } },
+    { "file": "T4-책-반납.txt", "task": "T4", "commit": "da53826", "screen": "반납 콘솔",
+      "see": "B1을 대출하고 2, B1을 넣으면 객체지향의 사실과 오해 반납했습니다가 나오고 다시 대출할 수 있다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n1\nM2\nB1\n0\n" } },
+    { "file": "done-대출-반납.txt", "task": "done", "commit": "da53826", "screen": "대출 반납 콘솔",
+      "see": "spec 실행 결과처럼 B1을 대출하고 반납한 뒤 프로그램을 끝냅니다가 나온다",
+      "run": { "input": "1\nM1\nB1\n2\nB1\n0\n" } }
+  ]
+}
