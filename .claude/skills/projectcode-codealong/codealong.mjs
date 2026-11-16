@@ -7,7 +7,7 @@
 
 import { execFileSync } from "node:child_process"
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs"
-import { join } from "node:path"
+import { join, dirname } from "node:path"
 import { contract, studentFolder } from "./contract.mjs"
 
 const arg = (name, fallback) => {
@@ -84,6 +84,7 @@ const LANGS = {
   jsx: "jsx", js: "js", mjs: "js", ts: "ts", tsx: "tsx", css: "css", json: "json", html: "html", md: "md",
   java: "java", kt: "kotlin", py: "python", sql: "sql", properties: "properties", xml: "xml",
   yml: "yaml", yaml: "yaml", sh: "bash", cmd: "bat", bat: "bat", dart: "dart", swift: "swift",
+  classpath: "xml", project: "xml", prefs: "properties",
 }
 function lang(rel) {
   const ext = rel.split(".").pop()
@@ -105,9 +106,22 @@ function changes(from, to) {
 
 const show = (h, path) => git(["show", `${h}:${path}`]).replace(/\n$/, "")
 
+// jar 같은 바이너리 파일은 코드로 칠 수 없다. 결과 폴더의 파일 폴더에 그대로 두고 복사하라고 쓴다
+const FILES = "파일"
+function binary(h, c) {
+  const buf = execFileSync("git", ["show", `${h}:${c.path}`], { maxBuffer: 1 << 28 })
+  if (!buf.includes(0)) return null
+  const target = join(out, FILES, c.rel)
+  mkdirSync(dirname(target), { recursive: true })
+  writeFileSync(target, buf)
+  return { t: "copy", rel: c.rel, from: `${FILES}/${c.rel}` }
+}
+
 // 파일 블록. kind: new(새 파일), modify(수정 파일), overwrite(덮어쓸 파일)
 // lines는 MD 코드 블록에 들어갈 줄, full은 바뀐 뒤 전체 코드
 function fileBlock(kind, h, c) {
+  const bin = binary(h, c)
+  if (bin) return bin
   const full = show(h, c.path)
   let lines
   if (kind === "new") lines = full.split("\n").map((l) => `+${l}`)
@@ -165,7 +179,7 @@ function stepBlocks(i, stepNo) {
   for (const c of list.filter((c) => c.status !== "D")) {
     const b = fileBlock(c.status === "A" ? "new" : "modify", step.h, c)
     const r = review[c.rel]
-    if (r && (r.code.length || r.concepts.length)) b.review = r
+    if (b.t === "file" && r && (r.code.length || r.concepts.length)) b.review = r
     blocks.push(b)
   }
   return blocks
@@ -185,6 +199,7 @@ function toMd(blocks) {
     else if (b.t === "list") md.push(...b.items.map((x) => `- ${x}`), "")
     else if (b.t === "delete") md.push("#### 삭제할 파일", "", ...b.items.map((x) => `- ${x}`), "")
     else if (b.t === "file") md.push(`#### ${LABEL[b.kind]} ${b.rel}`, "", "```" + b.lang, ...b.lines, "```", "")
+    else if (b.t === "copy") md.push(`#### 복사할 파일 ${b.rel}`, "", `- 따라치기 폴더의 ${b.from}를 ${student}/${b.rel}로 복사한다`, "")
   }
   return md.join("\n")
 }
@@ -268,6 +283,8 @@ function toHtml(title, blocks) {
     else if (b.t === "list") body.push(`<ul>${b.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`)
     else if (b.t === "delete")
       body.push(`<div class="file"><div class="head"><span class="tag del">삭제할 파일</span></div><ul class="dels">${b.items.map((x) => `<li><code>${esc(x)}</code></li>`).join("")}</ul></div>`)
+    else if (b.t === "copy")
+      body.push(`<div class="file"><div class="head"><span class="tag copyf">복사할 파일</span><code class="path">${esc(b.rel)}</code></div><p class="copy-note">따라치기 폴더의 <a href="${esc(encodeURI(b.from))}">${esc(b.from)}</a>를 ${esc(student)}/${esc(b.rel)}로 복사한다</p></div>`)
     else if (b.t === "file") {
       // 복사 아이콘 하나. 누르면 그 단계가 끝난 뒤의 파일 전체가 복사된다
       // 리뷰가 있는 파일은 복사 아이콘 왼쪽에 물음표 아이콘이 있다. 누르면 코드 위에 코드 리뷰가 열린다
@@ -330,6 +347,7 @@ h2,h3{scroll-margin-top:24px}
 .file{border:1px solid var(--line);border-radius:12px;margin:16px 0;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;background:var(--code);border-bottom:1px solid var(--line)}
 .tag{font:500 12px var(--font);padding:2px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.tag.copyf{color:var(--muted)}.copy-note{margin:0;padding:10px 14px;font-size:14px}.copy-note a{color:var(--accent)}
 .tag.new{color:var(--add-fg)}.tag.modify{color:var(--accent)}.tag.overwrite{color:var(--muted)}.tag.del{color:var(--rem-fg)}
 .path{min-width:0}
 .btns{margin-left:auto;display:flex;gap:6px}
@@ -431,6 +449,9 @@ function write(name, title, blocks) {
   writeFileSync(join(out, `${name}.html`), toHtml(title, blocks))
 }
 
+// 시작 키트가 비었으면 처음 단계부터 모든 파일을 문서로 준다
+const kitEmpty = !git(["ls-tree", "-r", "--name-only", hashes[0], "--", student]).trim()
+
 rmSync(out, { recursive: true, force: true })
 mkdirSync(out, { recursive: true })
 
@@ -483,7 +504,7 @@ for (const [chapter, { name: fileName, whole }] of Object.entries(joins)) {
   const doc = [
     { t: "h1", text: fileName },
     { t: "p", text: `${ch.no} ${chapter} ${ch.name}까지 끝낸 코드다.` },
-    { t: "p", text: `시작 키트를 ${student} 폴더로 복사한 뒤 아래 순서대로 한다.` },
+    { t: "p", text: kitEmpty ? `빈 ${student} 폴더를 만든 뒤 아래 순서대로 한다.` : `시작 키트를 ${student} 폴더로 복사한 뒤 아래 순서대로 한다.` },
     ...prepBlocks(),
     { t: "h2", text: `${wholeCh.no}장까지 통째로`, id: "whole" },
     { t: "p", text: `${wholeCh.no} ${whole}까지 끝낸 파일이다.` },
