@@ -7,7 +7,7 @@
   - 실행하면: 메뉴가 나오고, 없는 번호를 넣으면 메뉴가 다시 나오고, 0을 넣으면 프로그램을 끝냅니다가 나온다
   - Why: 메뉴가 있어야 대출과 반납을 고를 수 있다
   - 다른 장: project-setup
-- [ ] T2 책 대출하기
+- [x] T2 책 대출하기
   - 근거: S2
   - 파일: hexa/src/hexa/Book.java, hexa/src/hexa/BookRepository.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/Main.java
   - 실행하면: 1, M1, B1을 넣으면 객체지향의 사실과 오해 대출했습니다가 나온다
