@@ -1,9 +1,9 @@
 # project-setup 작업
 
 - [x] 테스트 작성
-- [ ] T1 이클립스 프로젝트 만들기
+- [x] T1 이클립스 프로젝트 만들기
   - 근거: S2
-  - 파일: hexa/.project, hexa/.classpath, hexa/.settings/org.eclipse.jdt.core.prefs, hexa/.settings/org.eclipse.core.resources.prefs, .gitignore
+  - 파일: hexa/.project, hexa/.classpath, hexa/.settings/org.eclipse.jdt.core.prefs, hexa/.settings/org.eclipse.core.resources.prefs, hexa/src/.gitkeep, .gitignore
   - 실행하면: 이클립스에서 hexa 프로젝트가 열리고 빈 src 폴더가 보인다
   - Why: 프로젝트가 열려야 Main을 만들고 실행할 수 있다
 - [ ] T2 시작 글 보여주기

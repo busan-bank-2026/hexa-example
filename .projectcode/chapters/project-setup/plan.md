@@ -9,6 +9,7 @@
 | hexa/.classpath | 새로 | 소스 src, JRE JavaSE-21, 출력 bin |
 | hexa/.settings/org.eclipse.jdt.core.prefs | 새로 | Java 21로 컴파일하고 공백 4칸으로 포맷한다 |
 | hexa/.settings/org.eclipse.core.resources.prefs | 새로 | 파일 인코딩을 UTF-8로 정한다 |
+| hexa/src/.gitkeep | 새로 | 빈 src 폴더를 git에 남긴다. T1 시점에 이클립스가 src를 찾는다 |
 | tests/lib/junit-platform-console-standalone.jar | 새로 | 검증용 JUnit 5 실행기. ddd-example에서 복사한다 |
 | tests/project-setup/ProjectSetupTest.java | 새로 | S1, S2 행동 테스트 |
 | .gitignore | 고침 | hexa/bin, tests/bin을 올리지 않는다 |
@@ -58,7 +59,7 @@ java -jar tests/lib/junit-platform-console-standalone.jar execute -cp "hexa/bin;
 | 할 일 | 파일 |
 |---|---|
 | S1 | Main.java |
-| S2 | .project, .classpath, org.eclipse.jdt.core.prefs, org.eclipse.core.resources.prefs |
+| S2 | .project, .classpath, org.eclipse.jdt.core.prefs, org.eclipse.core.resources.prefs, src/.gitkeep |
 
 ## 라이브러리
 
