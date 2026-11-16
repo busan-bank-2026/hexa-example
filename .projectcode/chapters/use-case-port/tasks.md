@@ -7,7 +7,7 @@
   - 실행하면: 메뉴, 대출, 반납이 layered-loan과 똑같이 동작한다
   - Why: 콘솔을 다루는 일을 한곳에 모아야 서비스에서 뗄 수 있다
   - 다른 장: project-setup, layered-loan
-- [ ] T2 서비스에서 콘솔 떼어 내기
+- [x] T2 서비스에서 콘솔 떼어 내기
   - 근거: S2
   - 파일: hexa/src/hexa/LoanService.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/Main.java
   - 실행하면: 메뉴 동작은 그대로다. 서비스 코드에 Scanner와 System.out이 없다
