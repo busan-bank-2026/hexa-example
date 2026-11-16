@@ -19,4 +19,12 @@ public class LoanService {
         repository.save(book);
         System.out.println(book.getTitle() + " 대출했습니다");
     }
+
+    public void returnBook() {
+        System.out.print("책 번호: ");
+        Book book = repository.findById(scanner.nextLine());
+        book.returnBook();
+        repository.save(book);
+        System.out.println(book.getTitle() + " 반납했습니다");
+    }
 }

@@ -16,6 +16,8 @@ public class Main {
 
             if (choice.equals("1")) {
                 loanService.borrow();
+            } else if (choice.equals("2")) {
+                loanService.returnBook();
             } else if (choice.equals("0")) {
                 System.out.println("프로그램을 끝냅니다");
                 break;

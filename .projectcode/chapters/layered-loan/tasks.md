@@ -18,7 +18,7 @@
   - 파일: hexa/src/hexa/Book.java
   - 실행하면: B1을 두 번 대출하면 이미 대출 중인 책입니다 오류로 프로그램이 멈춘다
   - Why: 대출 규칙은 책이 지킨다. 멈추는 문제는 loan-errors 장에서 고친다
-- [ ] T4 책 반납하기
+- [x] T4 책 반납하기
   - 근거: S4
   - 파일: hexa/src/hexa/Book.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/Main.java
   - 실행하면: B1을 대출하고 2, B1을 넣으면 객체지향의 사실과 오해 반납했습니다가 나오고 다시 대출할 수 있다

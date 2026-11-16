@@ -17,6 +17,10 @@ public class Book {
         this.borrowerId = memberId;
     }
 
+    public void returnBook() {
+        this.borrowerId = null;
+    }
+
     public String getId() {
         return id;
     }
