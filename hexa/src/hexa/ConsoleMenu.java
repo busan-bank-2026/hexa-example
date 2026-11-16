@@ -2,6 +2,8 @@ package hexa;
 
 import java.util.Scanner;
 
+import hexa.domain.Book;
+
 public class ConsoleMenu {
     private final Scanner scanner = new Scanner(System.in);
     private final LoanUseCase loanUseCase;

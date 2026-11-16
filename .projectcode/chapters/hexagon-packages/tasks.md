@@ -1,7 +1,7 @@
 # hexagon-packages 작업
 
 - [x] 테스트 작성
-- [ ] T1 책을 domain 패키지로 옮기기
+- [x] T1 책을 domain 패키지로 옮기기
   - 근거: S1
   - 파일: hexa/src/hexa/domain/Book.java, hexa/src/hexa/Book.java, hexa/src/hexa/LoanService.java, hexa/src/hexa/LoanUseCase.java, hexa/src/hexa/BookPort.java, hexa/src/hexa/ConsoleMenu.java, hexa/src/hexa/MemoryBookAdapter.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 메뉴 동작은 그대로다. Book이 hexa/domain 폴더에 있다

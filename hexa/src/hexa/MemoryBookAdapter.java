@@ -3,6 +3,8 @@ package hexa;
 import java.util.HashMap;
 import java.util.Map;
 
+import hexa.domain.Book;
+
 public class MemoryBookAdapter implements BookPort {
     private final Map<String, Book> books = new HashMap<>();
 

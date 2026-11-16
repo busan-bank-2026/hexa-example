@@ -1,4 +1,4 @@
-package hexa;
+package hexa.domain;
 
 public class Book {
     private final String id;

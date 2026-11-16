@@ -1,5 +1,7 @@
 package hexa;
 
+import hexa.domain.Book;
+
 public class LoanService implements LoanUseCase {
     private final BookPort bookPort;
 

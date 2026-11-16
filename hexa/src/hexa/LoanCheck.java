@@ -1,5 +1,7 @@
 package hexa;
 
+import hexa.domain.Book;
+
 public class LoanCheck {
 
     public static void main(String[] args) {
