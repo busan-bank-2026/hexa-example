@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -42,14 +43,15 @@ public class FileBookAdapter implements BookPort {
 
     private String toLine(Book book) {
         String borrowerId = book.getBorrowerId() == null ? "" : book.getBorrowerId();
-        return book.getId() + "," + book.getTitle() + "," + borrowerId;
+        String dueDate = book.getDueDate() == null ? "" : book.getDueDate().toString();
+        return book.getId() + "," + book.getTitle() + "," + borrowerId + "," + dueDate;
     }
 
     private Book toBook(String line) {
         String[] parts = line.split(",", -1);
         Book book = new Book(parts[0], parts[1]);
         if (!parts[2].isEmpty()) {
-            book.borrow(parts[2]);
+            book.borrow(parts[2], LocalDate.parse(parts[3]));
         }
         return book;
     }

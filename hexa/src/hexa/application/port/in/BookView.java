@@ -1,4 +1,6 @@
 package hexa.application.port.in;
 
-public record BookView(String id, String title, boolean borrowed) {
+import java.time.LocalDate;
+
+public record BookView(String id, String title, boolean borrowed, LocalDate dueDate, boolean overdue) {
 }

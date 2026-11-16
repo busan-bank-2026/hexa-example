@@ -1,7 +1,7 @@
 # due-date 작업
 
 - [x] 테스트 작성
-- [ ] T1 반납 기한 정하고 보여 주기
+- [x] T1 반납 기한 정하고 보여 주기
   - 근거: S1, S2, S3
   - 파일: hexa/src/hexa/domain/Book.java, hexa/src/hexa/application/port/in/BookView.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/out/FileBookAdapter.java, hexa/src/hexa/adapter/in/ConsoleMenu.java
   - 실행하면: 대출하면 반납 기한: 14일 뒤 날짜가 나오고 목록과 저장 파일에 기한이 남는다. 연체 표시는 14일을 기다려야 볼 수 있다

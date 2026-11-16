@@ -28,6 +28,7 @@ public class ConsoleMenu {
                     String bookId = scanner.nextLine();
                     BookView book = loanUseCase.borrow(new BorrowCommand(memberId, bookId));
                     System.out.println(book.title() + " 대출했습니다");
+                    System.out.println("반납 기한: " + book.dueDate());
                 } else if (choice.equals("2")) {
                     System.out.print("책 번호: ");
                     String bookId = scanner.nextLine();
@@ -35,7 +36,13 @@ public class ConsoleMenu {
                     System.out.println(book.title() + " 반납했습니다");
                 } else if (choice.equals("3")) {
                     for (BookView book : loanUseCase.listBooks()) {
-                        String status = book.borrowed() ? "대출 중" : "대출 가능";
+                        String status = "대출 가능";
+                        if (book.borrowed()) {
+                            status = "대출 중 반납 기한 " + book.dueDate();
+                        }
+                        if (book.overdue()) {
+                            status = status + " 연체";
+                        }
                         System.out.println(book.id() + " " + book.title() + " " + status);
                     }
                 } else if (choice.equals("0")) {

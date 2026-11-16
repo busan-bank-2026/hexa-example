@@ -1,5 +1,6 @@
 package hexa.application;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class LoanService implements LoanUseCase {
     @Override
     public BookView borrow(BorrowCommand command) {
         Book book = findBook(command.bookId());
-        book.borrow(command.memberId());
+        book.borrow(command.memberId(), LocalDate.now().plusDays(14));
         bookPort.save(book);
         return toView(book);
     }
@@ -50,6 +51,7 @@ public class LoanService implements LoanUseCase {
     }
 
     private BookView toView(Book book) {
-        return new BookView(book.getId(), book.getTitle(), book.getBorrowerId() != null);
+        return new BookView(book.getId(), book.getTitle(), book.getBorrowerId() != null, book.getDueDate(),
+                book.isOverdue(LocalDate.now()));
     }
 }
