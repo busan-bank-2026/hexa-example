@@ -1,8 +1,8 @@
 package hexa;
 
 import hexa.adapter.in.ConsoleMenu;
-import hexa.adapter.out.ConsoleNotifyAdapter;
 import hexa.adapter.out.FileBookAdapter;
+import hexa.adapter.out.FileNotifyAdapter;
 import hexa.adapter.out.SystemClockAdapter;
 import hexa.application.LoanService;
 import hexa.application.port.in.LoanUseCase;
@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("도서 대출 프로그램을 시작합니다");
         BookPort bookPort = new FileBookAdapter();
-        LoanUseCase loanUseCase = new LoanService(bookPort, new SystemClockAdapter(), new ConsoleNotifyAdapter());
+        LoanUseCase loanUseCase = new LoanService(bookPort, new SystemClockAdapter(), new FileNotifyAdapter());
         new ConsoleMenu(loanUseCase).run();
     }
 }
