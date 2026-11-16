@@ -11,6 +11,9 @@ public class Book {
     }
 
     public void borrow(String memberId) {
+        if (borrowerId != null) {
+            throw new IllegalStateException("이미 대출 중인 책입니다");
+        }
         this.borrowerId = memberId;
     }
 
