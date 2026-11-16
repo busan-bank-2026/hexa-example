@@ -16,7 +16,7 @@ public class ConsoleMenu {
 
     public void run() {
         while (true) {
-            System.out.println("1 대출  2 반납  3 목록  0 종료");
+            System.out.println("1 대출  2 반납  3 목록  4 연체 알림  0 종료");
             System.out.print("> ");
             String choice = scanner.nextLine();
 
@@ -45,6 +45,9 @@ public class ConsoleMenu {
                         }
                         System.out.println(book.id() + " " + book.title() + " " + status);
                     }
+                } else if (choice.equals("4")) {
+                    int count = loanUseCase.notifyOverdue();
+                    System.out.println("연체 알림 " + count + "건을 보냈습니다");
                 } else if (choice.equals("0")) {
                     System.out.println("프로그램을 끝냅니다");
                     break;

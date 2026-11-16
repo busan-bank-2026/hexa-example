@@ -8,15 +8,18 @@ import hexa.application.port.in.BorrowCommand;
 import hexa.application.port.in.LoanUseCase;
 import hexa.application.port.out.BookPort;
 import hexa.application.port.out.ClockPort;
+import hexa.application.port.out.NotifyPort;
 import hexa.domain.Book;
 
 public class LoanService implements LoanUseCase {
     private final BookPort bookPort;
     private final ClockPort clockPort;
+    private final NotifyPort notifyPort;
 
-    public LoanService(BookPort bookPort, ClockPort clockPort) {
+    public LoanService(BookPort bookPort, ClockPort clockPort, NotifyPort notifyPort) {
         this.bookPort = bookPort;
         this.clockPort = clockPort;
+        this.notifyPort = notifyPort;
     }
 
     @Override
@@ -42,6 +45,18 @@ public class LoanService implements LoanUseCase {
             views.add(toView(book));
         }
         return views;
+    }
+
+    @Override
+    public int notifyOverdue() {
+        int count = 0;
+        for (Book book : bookPort.findAll()) {
+            if (book.isOverdue(clockPort.today())) {
+                notifyPort.send(book.getBorrowerId(), book.getTitle() + " 반납 기한 " + book.getDueDate() + "이 지났습니다");
+                count++;
+            }
+        }
+        return count;
     }
 
     private Book findBook(String bookId) {

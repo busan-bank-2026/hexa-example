@@ -5,7 +5,7 @@
   - 근거: due-date S3 테스트가 메뉴의 4 연체 알림 글까지 연체로 센다
   - 파일: tests/hexa/DueDateTest.java
   - 다른 장: due-date
-- [ ] T1 알림 포트로 연체 알림 보내기
+- [x] T1 알림 포트로 연체 알림 보내기
   - 근거: S1, S2, S3, S4
   - 파일: hexa/src/hexa/application/port/out/NotifyPort.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/out/ConsoleNotifyAdapter.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/Main.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 메뉴에 4 연체 알림이 생기고 고르면 연체 알림 N건을 보냈습니다가 나온다. 두 번째 입구를 돌리면 M1에게 알림: 줄과 연체 알림: 1건이 바로 나온다

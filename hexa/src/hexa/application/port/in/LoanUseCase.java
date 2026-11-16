@@ -8,4 +8,6 @@ public interface LoanUseCase {
     BookView returnBook(String bookId);
 
     List<BookView> listBooks();
+
+    int notifyOverdue();
 }
