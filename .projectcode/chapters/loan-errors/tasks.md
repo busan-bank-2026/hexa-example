@@ -1,0 +1,24 @@
+# loan-errors 작업
+
+- [ ] 테스트 작성
+- [ ] T1 콘솔 메뉴가 예외를 메시지로 바꾸기
+  - 근거: S1, S3, S5
+  - 파일: hexa/src/hexa/adapter/in/ConsoleMenu.java
+  - 실행하면: 대출 중인 책을 빌리면 이미 대출 중인 책입니다가 나오고 메뉴로 돌아간다. 없는 책 B9는 아직 NullPointerException으로 멈춘다
+  - Why: 실패를 어떻게 보여 줄지는 바깥 어댑터가 정하고 안쪽은 메시지를 담은 예외만 던진다
+  - 다른 장: project-setup, layered-loan, use-case-port, hexagon-packages, book-list, borrow-command
+- [ ] T2 없는 책 번호를 오류로 알리기
+  - 근거: S2
+  - 파일: hexa/src/hexa/application/LoanService.java
+  - 실행하면: B9를 빌리거나 반납하면 책을 찾을 수 없습니다가 나오고 메뉴로 돌아간다
+  - Why: NullPointerException은 무엇이 틀렸는지 알려 주지 않으니 책을 찾는 서비스가 뜻이 있는 예외로 바꾼다
+  - 다른 장: layered-loan, use-case-port, store-port, hexagon-packages, book-list, borrow-command
+- [ ] T3 대출 중이 아닌 책 반납 거절하기
+  - 근거: S4
+  - 파일: hexa/src/hexa/domain/Book.java
+  - 실행하면: 빌리지 않은 B2를 반납하면 대출 중이 아닌 책입니다가 나오고 메뉴로 돌아간다
+  - Why: 업무 규칙은 도메인 책이 예외로 알리고 콘솔 메뉴는 고치지 않아도 같은 자리에서 메시지로 바꾼다
+  - 다른 장: layered-loan, hexagon-packages, file-store
+- [ ] 수렴 점검
+- [ ] 캡처
+- [ ] 도식
