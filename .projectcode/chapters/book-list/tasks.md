@@ -1,7 +1,7 @@
 # book-list 작업
 
 - [x] 테스트 작성
-- [ ] T1 포트가 응답 모델을 돌려주게 하기
+- [x] T1 포트가 응답 모델을 돌려주게 하기
   - 근거: S3, S4
   - 파일: hexa/src/hexa/application/port/in/BookView.java, hexa/src/hexa/application/port/in/LoanUseCase.java, hexa/src/hexa/application/LoanService.java, hexa/src/hexa/adapter/in/ConsoleMenu.java, hexa/src/hexa/LoanCheck.java
   - 실행하면: 대출과 반납 결과 글은 그대로다. 콘솔 메뉴와 두 번째 입구에서 import hexa.domain.Book이 사라진다

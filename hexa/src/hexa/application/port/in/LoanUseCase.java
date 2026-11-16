@@ -1,9 +1,7 @@
 package hexa.application.port.in;
 
-import hexa.domain.Book;
-
 public interface LoanUseCase {
-    Book borrow(String memberId, String bookId);
+    BookView borrow(String memberId, String bookId);
 
-    Book returnBook(String bookId);
+    BookView returnBook(String bookId);
 }
