@@ -12,6 +12,6 @@
   - 파일: hexa/src/hexa/application/port/in/BorrowCommand.java
   - 실행하면: 회원 번호를 비우고 대출하면 IllegalArgumentException 회원 번호가 비었습니다로 멈춘다
   - Why: 형식 검사는 책 상태를 몰라도 되니 입력 모델이 만들어질 때 막고 업무 규칙은 도메인 책에 둔다
-- [ ] 수렴 점검
-- [ ] 캡처
-- [ ] 도식
+- [x] 수렴 점검
+- [x] 캡처
+- [x] 도식
