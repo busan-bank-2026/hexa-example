@@ -1,6 +1,6 @@
 # 폴더 구조
 
-기준 장: project-setup
+기준 장: layered-loan
 
 ```
 hexa/
@@ -9,6 +9,9 @@ hexa/
     org.eclipse.jdt.core.prefs
   src/
     hexa/
+      Book.java
+      BookRepository.java
+      LoanService.java
       Main.java
     .gitkeep
   .classpath
