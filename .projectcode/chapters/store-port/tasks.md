@@ -1,6 +1,6 @@
 # store-port 작업
 
-- [ ] 테스트 작성
+- [x] 테스트 작성
 - [ ] T1 저장 포트 열기
   - 근거: S1
   - 파일: hexa/src/hexa/BookPort.java, hexa/src/hexa/BookRepository.java, hexa/src/hexa/LoanService.java

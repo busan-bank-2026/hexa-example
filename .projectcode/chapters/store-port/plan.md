@@ -12,6 +12,7 @@
 | hexa/src/hexa/LoanCheck.java | 고침 | 메모리 어댑터를 만들어 서비스에 넘긴다 |
 | tests/hexa/StorePortTest.java | 새로 | S1, S2, S3 검증용 행동 테스트 |
 | tests/hexa/UseCasePortTest.java | 고침 | 서비스를 만드는 법이 바뀌어 맞춘다 |
+| tests/hexa/Find.java | 새로 | 검증용. 클래스를 이름으로 찾는다. 뒤 장에서 패키지가 나뉘어도 테스트가 그대로 찾는다 |
 
 ## 코드 계획
 

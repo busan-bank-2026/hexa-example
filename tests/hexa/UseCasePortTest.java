@@ -30,7 +30,7 @@ class UseCasePortTest {
     }
 
     private Object newService() throws Exception {
-        return Class.forName("hexa.LoanService").getConstructor().newInstance();
+        return Find.newLoanService();
     }
 
     private String title(Object book) throws Exception {
@@ -40,9 +40,9 @@ class UseCasePortTest {
     @Test
     @DisplayName("S1 대출과 반납을 유스케이스 포트로 연다")
     void s1() throws Exception {
-        Class<?> port = Class.forName("hexa.LoanUseCase");
+        Class<?> port = Find.type("LoanUseCase");
         assertTrue(port.isInterface());
-        assertTrue(port.isAssignableFrom(Class.forName("hexa.LoanService")));
+        assertTrue(port.isAssignableFrom(Find.type("LoanService")));
 
         Method borrow = port.getMethod("borrow", String.class, String.class);
         Method returnBook = port.getMethod("returnBook", String.class);
@@ -50,7 +50,7 @@ class UseCasePortTest {
         assertEquals("클린 아키텍처", title(borrow.invoke(service, "M1", "B2")));
         assertEquals("클린 아키텍처", title(returnBook.invoke(service, "B2")));
 
-        Class<?> menu = Class.forName("hexa.ConsoleMenu");
+        Class<?> menu = Find.type("ConsoleMenu");
         assertTrue(menu.getConstructor(port) != null);
     }
 
@@ -58,8 +58,8 @@ class UseCasePortTest {
     @DisplayName("S2 서비스는 콘솔을 쓰지 않는다. 받은 값으로 대출과 반납을 하고 결과로 책을 돌려준다")
     void s2() throws Exception {
         Object service = newService();
-        Method borrow = service.getClass().getMethod("borrow", String.class, String.class);
-        Method returnBook = service.getClass().getMethod("returnBook", String.class);
+        Method borrow = Find.type("LoanUseCase").getMethod("borrow", String.class, String.class);
+        Method returnBook = Find.type("LoanUseCase").getMethod("returnBook", String.class);
         Object[] books = new Object[2];
         String out = captureOut(() -> {
             books[0] = borrow.invoke(service, "M1", "B1");
@@ -74,7 +74,7 @@ class UseCasePortTest {
     @Test
     @DisplayName("S4 콘솔 없이 포트를 부르는 두 번째 입구를 만든다. 실행하면 대출과 반납 결과를 찍는다")
     void s4() throws Exception {
-        Method main = Class.forName("hexa.LoanCheck").getMethod("main", String[].class);
+        Method main = Find.type("LoanCheck").getMethod("main", String[].class);
         String out = captureOut(() -> main.invoke(null, (Object) new String[0]));
         assertTrue(out.contains("B1을 M1에게 대출: 객체지향의 사실과 오해"));
         assertTrue(out.contains("B1 반납: 객체지향의 사실과 오해"));
