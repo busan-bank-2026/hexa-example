@@ -18,6 +18,9 @@ public class Book {
     }
 
     public void returnBook() {
+        if (borrowerId == null) {
+            throw new IllegalStateException("대출 중이 아닌 책입니다");
+        }
         this.borrowerId = null;
     }
 

@@ -13,7 +13,7 @@
   - 실행하면: B9를 빌리거나 반납하면 책을 찾을 수 없습니다가 나오고 메뉴로 돌아간다
   - Why: NullPointerException은 무엇이 틀렸는지 알려 주지 않으니 책을 찾는 서비스가 뜻이 있는 예외로 바꾼다
   - 다른 장: layered-loan, use-case-port, store-port, hexagon-packages, book-list, borrow-command
-- [ ] T3 대출 중이 아닌 책 반납 거절하기
+- [x] T3 대출 중이 아닌 책 반납 거절하기
   - 근거: S4
   - 파일: hexa/src/hexa/domain/Book.java
   - 실행하면: 빌리지 않은 B2를 반납하면 대출 중이 아닌 책입니다가 나오고 메뉴로 돌아간다
