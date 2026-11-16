@@ -5,7 +5,6 @@ on:
     branches: [master]
     paths:
       - ".projectcode/code/**"
-      - ".github/pages/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -30,7 +29,7 @@ jobs:
         run: |
           mkdir _site
           cp -r .projectcode/code/. _site/
-          cp .github/pages/index.html _site/index.html
+          cp _site/따라치기.html _site/index.html
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
